@@ -5,6 +5,12 @@
  */
 package org.kodigo.project1.group2.views;
 
+import java.util.ArrayList;
+import org.kodigo.project1.group2.controllers.CountryController;
+import org.kodigo.project1.group2.controllers.FlightController;
+import org.kodigo.project1.group2.models.City;
+import org.kodigo.project1.group2.models.Country;
+
 
 /**
  *
@@ -18,6 +24,14 @@ public class NewFlight extends javax.swing.JFrame {
     public NewFlight() {
         initComponents();
         setLocationRelativeTo(null);
+        CountryController countries = new CountryController();
+        jComboBox1.removeAllItems();
+        jComboBox2.removeAllItems();
+        jComboBox3.removeAllItems();
+        jComboBox4.removeAllItems();
+        
+        
+        
         
     }
 
@@ -111,6 +125,8 @@ public class NewFlight extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jTextField2.setText("jTextField2");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,10 +140,6 @@ public class NewFlight extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
                     .addComponent(jLabel9)
                     .addComponent(jButton2))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +215,10 @@ public class NewFlight extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,9 +228,10 @@ public class NewFlight extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Btn_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_createActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_createActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FlightController addFlight = new FlightController();
+        //addFlight.newFlight(jTextField2.getText(), jComboBox1., destinationCity, departureTime, arrivalTime, aircraft)
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
