@@ -40,7 +40,7 @@ public class Mailing extends javax.swing.JFrame {
         Btn_Upload_files = new javax.swing.JButton();
         Btn_Send = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Mailing");
@@ -116,8 +116,6 @@ public class Mailing extends javax.swing.JFrame {
                 .addComponent(Btn_Send)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jLabel2.getAccessibleContext().setAccessibleName("Email:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
