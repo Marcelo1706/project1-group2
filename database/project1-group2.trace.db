@@ -1,89 +1,27 @@
-2021-08-18 14:45:15 database: wrong user or password; user: "ADMIN"
-org.h2.message.DbException: Nombre de usuario ó password incorrecto
-Wrong user name or password [28000-200]
+2021-08-19 12:02:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "COUNTRY" no encontrada
+Table "COUNTRY" not found; SQL statement:
+SELECT count(*) AS total FROM country [42102-200]
+2021-08-19 12:02:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "COUNTRY" no encontrada
+Table "COUNTRY" not found; SQL statement:
+SELECT * FROM country [42102-200]
+2021-08-19 12:06:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "United States" no encontrada
+Column "United States" not found; SQL statement:
+INSERT INTO COUNTRY (countryName) VALUES ("United States") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	at org.h2.message.DbException.get(DbException.java:205)
 	at org.h2.message.DbException.get(DbException.java:181)
-	at org.h2.message.DbException.get(DbException.java:170)
-	at org.h2.engine.Engine.openSession(Engine.java:131)
-	at org.h2.engine.Engine.openSession(Engine.java:192)
-	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
-	at org.h2.engine.Engine.createSession(Engine.java:166)
-	at org.h2.engine.Engine.createSession(Engine.java:29)
-	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
-	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
-	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
-	at org.h2.Driver.connect(Driver.java:69)
-	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:309)
-	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:289)
-	at org.h2.server.web.WebServer.getConnection(WebServer.java:785)
-	at org.h2.server.web.WebApp.test(WebApp.java:947)
-	at org.h2.server.web.WebApp.process(WebApp.java:238)
-	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
-	at org.h2.server.web.WebThread.process(WebThread.java:139)
-	at org.h2.server.web.WebThread.run(WebThread.java:94)
-	at java.base/java.lang.Thread.run(Thread.java:866)
-Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
-Wrong user name or password [28000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 21 more
-2021-08-18 14:45:19 database: wrong user or password; user: "ADMIN"
-org.h2.message.DbException: Nombre de usuario ó password incorrecto
-Wrong user name or password [28000-200]
-	at org.h2.message.DbException.get(DbException.java:205)
-	at org.h2.message.DbException.get(DbException.java:181)
-	at org.h2.message.DbException.get(DbException.java:170)
-	at org.h2.engine.Engine.openSession(Engine.java:131)
-	at org.h2.engine.Engine.openSession(Engine.java:192)
-	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:171)
-	at org.h2.engine.Engine.createSession(Engine.java:166)
-	at org.h2.engine.Engine.createSession(Engine.java:29)
-	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
-	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:173)
-	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:152)
-	at org.h2.Driver.connect(Driver.java:69)
-	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:309)
-	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:289)
-	at org.h2.server.web.WebServer.getConnection(WebServer.java:785)
-	at org.h2.server.web.WebApp.test(WebApp.java:947)
-	at org.h2.server.web.WebApp.process(WebApp.java:238)
-	at org.h2.server.web.WebApp.processRequest(WebApp.java:173)
-	at org.h2.server.web.WebThread.process(WebThread.java:139)
-	at org.h2.server.web.WebThread.run(WebThread.java:94)
-	at java.base/java.lang.Thread.run(Thread.java:866)
-Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
-Wrong user name or password [28000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 21 more
-2021-08-18 14:50:04 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "CREATE TABLE AIRLINE(
-    AIRLINEID INT NOT NULL AUTO_INCREMENT,
-    AIRLINENAME VARCHAR(50),
-    PRIMARY KEY PK_AIRLINE[*](AIRLINEID)
-)"; se esperaba "HASH, ("
-Syntax error in SQL statement "CREATE TABLE AIRLINE(
-    AIRLINEID INT NOT NULL AUTO_INCREMENT,
-    AIRLINENAME VARCHAR(50),
-    PRIMARY KEY PK_AIRLINE[*](AIRLINEID)
-)"; expected "HASH, ("; SQL statement:
-CREATE TABLE Airline(
-    airlineId int not null auto_increment,
-    airlineName varchar(50),
-    primary key pk_airline(airlineId)
-) [42001-200]
-2021-08-19 10:22:16 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Imposible eliminar "AIRCRAFT" debido a que "CONSTRAINT_7B" depende de él.
-Cannot drop "AIRCRAFT" because "CONSTRAINT_7B" depends on it; SQL statement:
-DROP TABLE AIRCRAFT [90107-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	at org.h2.message.DbException.get(DbException.java:205)
-	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
-	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
-	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
-	at org.h2.command.Command.executeUpdate(Command.java:251)
-	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:228)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
 	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
 	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
 	at org.h2.server.web.WebApp.query(WebApp.java:1116)
@@ -92,26 +30,22 @@ DROP TABLE AIRCRAFT [90107-200]
 	at org.h2.server.web.WebThread.process(WebThread.java:178)
 	at org.h2.server.web.WebThread.run(WebThread.java:94)
 	at java.base/java.lang.Thread.run(Thread.java:866)
-2021-08-19 10:22:24 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "MAIL" no encontrada
-Table "MAIL" not found; SQL statement:
-DROP TABLE MAIL [42102-200]
-2021-08-19 10:22:24 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "MAIL" no encontrada
-Table "MAIL" not found; SQL statement:
-DROP TABLE MAIL [42102-200]
-2021-08-19 10:22:40 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Imposible eliminar "AIRLINE" debido a que "CONSTRAINT_59" depende de él.
-Cannot drop "AIRLINE" because "CONSTRAINT_59" depends on it; SQL statement:
-DROP TABLE AIRLINE [90107-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+2021-08-19 12:07:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "United States" no encontrada
+Column "United States" not found; SQL statement:
+INSERT INTO COUNTRY VALUES(null,"United States") [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	at org.h2.message.DbException.get(DbException.java:205)
-	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
-	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
-	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
-	at org.h2.command.Command.executeUpdate(Command.java:251)
-	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:228)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Insert.prepare(Insert.java:327)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:212)
 	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
 	at org.h2.server.web.WebApp.getResult(WebApp.java:1459)
 	at org.h2.server.web.WebApp.query(WebApp.java:1116)
@@ -120,3 +54,63 @@ DROP TABLE AIRLINE [90107-200]
 	at org.h2.server.web.WebThread.process(WebThread.java:178)
 	at org.h2.server.web.WebThread.run(WebThread.java:94)
 	at java.base/java.lang.Thread.run(Thread.java:866)
+2021-08-19 12:08:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "*" no encontrada
+Column "*" not found [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3195)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3268)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:316)
+	at org.kodigo.project1.group2.models.Database.select(Database.java:59)
+	at org.kodigo.project1.group2.controllers.CountryController.getCountries(CountryController.java:31)
+	at org.kodigo.project1.group2.views.CountryManagement.<init>(CountryManagement.java:23)
+	at org.kodigo.project1.group2.views.CountryManagement.lambda$main$0(CountryManagement.java:147)
+	at org.kodigo.project1.group2.views.CountryManagement$$Lambda$112/0x0000000000000000.run(Unknown Source)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:708)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2021-08-19 12:11:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "*" no encontrada
+Column "*" not found [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3195)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3268)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:316)
+	at org.kodigo.project1.group2.models.Database.select(Database.java:59)
+	at org.kodigo.project1.group2.controllers.CountryController.getCountries(CountryController.java:31)
+	at org.kodigo.project1.group2.views.CountryManagement.<init>(CountryManagement.java:23)
+	at org.kodigo.project1.group2.views.CountryManagement.lambda$main$0(CountryManagement.java:147)
+	at org.kodigo.project1.group2.views.CountryManagement$$Lambda$112/0x0000000000000000.run(Unknown Source)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:708)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2021-08-19 13:53:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL " INSERT INTO COUNTRY ( COUNTRYNAME ) VALUES ( EL SALVADOR[*] ) "; se esperaba "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"
+Syntax error in SQL statement " INSERT INTO COUNTRY ( COUNTRYNAME ) VALUES ( EL SALVADOR[*] ) "; expected "(, ., [, ::, AT, FORMAT, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+ INSERT INTO country ( countryName ) VALUES ( El Salvador )  [42001-200]

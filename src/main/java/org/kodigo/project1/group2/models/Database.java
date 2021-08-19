@@ -21,9 +21,9 @@ public class Database {
 
     public Database() {
         try {
-            Class.forName("org.h2.Driver");
+            //Class.forName("org.h2.Driver");
             this.setConnection(DriverManager.getConnection("jdbc:h2:./database/project1-group2"));
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
@@ -80,5 +80,35 @@ public class Database {
             System.out.println(e);
         }
         return insertResult;
+    }
+    
+    public boolean delete(String table, String where) {
+        boolean deleteResult = false;
+        String deleteQuery = " DELETE FROM " + table + " WHERE " + where;
+
+        try {
+            PreparedStatement pstm = connection.prepareStatement(deleteQuery);
+            pstm.execute();
+            pstm.close();
+            deleteResult = true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return deleteResult;
+    }
+    
+    public boolean update(String table, String fieldValuePair, String where){
+        boolean updateResult = false;
+        String updateQuery = " UPDATE "+ table + " SET " + fieldValuePair + " WHERE "+ where;
+        
+        try {
+            PreparedStatement pstm = connection.prepareStatement(updateQuery);
+            pstm.execute();
+            pstm.close();
+            updateResult = true;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return updateResult;
     }
 }
