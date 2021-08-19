@@ -110,8 +110,6 @@ public class NewFlight extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Create Flight Management");
 
-        jTextField2.setText("jTextField2");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
