@@ -16,6 +16,8 @@ public class Mailing extends javax.swing.JFrame {
      */
     public Mailing() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

@@ -15,6 +15,8 @@ public class ExcelManagement extends javax.swing.JFrame {
     /** Creates new form ExcelManagement */
     public ExcelManagement() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /** This method is called from within the constructor to
