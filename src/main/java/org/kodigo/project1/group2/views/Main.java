@@ -17,8 +17,10 @@ public class Main extends javax.swing.JFrame {
             try{
                 for(sec=1;sec<=100;sec++){
                     jProgressBar1.setValue(sec);
-                    time.sleep(50);
+                    time.sleep(25);
                 }
+               FlightManagement flight= new FlightManagement();
+               flight.setVisible(true);
             }catch(Exception e){
                 System.out.print(e);
             }
@@ -92,7 +94,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       time.run();
+       time.start();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
