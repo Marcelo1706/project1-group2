@@ -5,9 +5,7 @@
  */
 package org.kodigo.project1.group2.views;
 
-import javax.swing.JOptionPane;
-import org.kodigo.project1.group2.views.UpdateFlight;
-import org.kodigo.project1.group2.views.WeatherReport;
+import org.kodigo.project1.group2.controllers.FlightController;
 
 
 /**
@@ -16,6 +14,7 @@ import org.kodigo.project1.group2.views.WeatherReport;
  */
 public class FlightManagement extends javax.swing.JFrame {
 
+    private FlightController flightController = new FlightController();
     /**
      * Creates new form GestionVuelo2
      */
@@ -276,6 +275,10 @@ public class FlightManagement extends javax.swing.JFrame {
                 new FlightManagement().setVisible(true);
             }
         });
+    }
+    
+    private void reloadTable(){
+        jTable1.setModel(flightController.getFlights());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
