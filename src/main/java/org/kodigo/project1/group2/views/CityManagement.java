@@ -217,7 +217,7 @@ public class CityManagement extends javax.swing.JFrame {
     }
     
     private void reloadTable(){
-        countryTable.setModel(countryController.getCountries());
+        countryTable.setModel(countryController.getCountriesTable());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
