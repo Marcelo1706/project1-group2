@@ -27,7 +27,7 @@ public class AirlineController {
    }
    
    public boolean updateAirline(int id, String airlineName){
-       return databaseHandler.update("airline", airlineName, airlineName);
+       return databaseHandler.update("airline", "airlineName = '" +airlineName+"'", "airlineId = " + id);
    }
            
    public boolean deleteAirline(int id){

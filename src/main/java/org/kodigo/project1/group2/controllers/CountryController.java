@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.kodigo.project1.group2.models.Country;
 import org.kodigo.project1.group2.models.Database;
+import org.kodigo.project1.group2.utils.ComboItem;
 
 /**
  *
@@ -23,7 +24,7 @@ public class CountryController {
     public CountryController(){
         this.databaseHandler = new Database();
     }
-
+    
     public ArrayList<Country> getCountriesList(){
         ArrayList<Country> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("country", "countryId,countryName", null);
@@ -32,7 +33,15 @@ public class CountryController {
         }
         return list;
     }
-
+    public ArrayList<ComboItem> loadCountriesComboItem(){
+        ArrayList<ComboItem> comboItems = new ArrayList<>();
+        ArrayList<Country> countryList = getCountriesList();
+        countryList.forEach((country) -> {
+            comboItems.add(new ComboItem(country.getCountryName(), String.valueOf(country.getCountryId())));
+        });
+        
+        return comboItems;
+    }
     
     public DefaultTableModel getCountriesTable(){
         DefaultTableModel model = new DefaultTableModel();        

@@ -6,11 +6,12 @@
 package org.kodigo.project1.group2.views;
 
 import java.util.ArrayList;
+import org.kodigo.project1.group2.controllers.CityController;
 import org.kodigo.project1.group2.controllers.CountryController;
 import org.kodigo.project1.group2.controllers.FlightController;
 import org.kodigo.project1.group2.models.City;
 import org.kodigo.project1.group2.models.Country;
-
+import org.kodigo.project1.group2.utils.ComboItem;
 
 /**
  *
@@ -21,18 +22,18 @@ public class NewFlight extends javax.swing.JFrame {
     /**
      * Creates new form NewFlight
      */
+    private CountryController countryController = new CountryController();
+    private CityController cityController = new CityController();
+
     public NewFlight() {
         initComponents();
         setLocationRelativeTo(null);
-        CountryController countries = new CountryController();
         jComboBox1.removeAllItems();
         jComboBox2.removeAllItems();
         jComboBox3.removeAllItems();
         jComboBox4.removeAllItems();
-        
-        
-        
-        
+        loadComboBox();
+
     }
 
     /**
@@ -54,7 +55,7 @@ public class NewFlight extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jComboBox4 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<ComboItem>();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -77,19 +78,13 @@ public class NewFlight extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Departure Arrival");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton2.setText("Cancel");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Origin City");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Destination Country");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Status");
@@ -99,8 +94,6 @@ public class NewFlight extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Destination City");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Departure Time");
@@ -271,20 +264,34 @@ public class NewFlight extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NewFlight().setVisible(true);
-                
-            }     
+
+            }
+        });
+
+    }
+
+    //ComboBox
+    private void loadComboBox() {
+        ArrayList<ComboItem> comboItems = countryController.loadCountriesComboItem();
+        comboItems.forEach((item) -> {
+            jComboBox1.addItem(item);
+            jComboBox3.addItem(item);
+        });
+        ArrayList<ComboItem> comboItems2 = cityController.loadCitiesComboItem();
+        comboItems2.forEach((item) -> {
+            jComboBox2.addItem(item);
+            jComboBox4.addItem(item);
         });
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<ComboItem> jComboBox1;
+    private javax.swing.JComboBox<ComboItem> jComboBox2;
+    private javax.swing.JComboBox<ComboItem> jComboBox3;
+    private javax.swing.JComboBox<ComboItem> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -302,4 +309,6 @@ public class NewFlight extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
+
+    
 }
