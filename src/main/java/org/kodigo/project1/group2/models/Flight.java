@@ -32,6 +32,15 @@ public class Flight {
         this.aircraft = aircraft;
     }
     
+    public Flight(int flightId){
+        this.flightId = flightId;
+    }
+    
+    public Flight(int flightId, String flightNumber){
+        this.flightId = flightId;
+        this.flightNumber = flightNumber;
+    }
+    
     
         
 }

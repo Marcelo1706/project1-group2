@@ -59,3 +59,5 @@ CREATE TABLE Mail(
     recipient varchar(100) not null,
     emailAddress varchar(255) not null
 );
+
+SELECT  flight.flightNumber, c1.cityName, c2.cityName, flight.departureTime, flight.arrivalTime, aircraft.model  FROM flight INNER JOIN city AS c1 ON c1.cityId = flight.originCityId INNER JOIN city AS c2 ON c2.cityId = flight.destinationCityId INNER JOIN aircraft ON aircraft.aircraftId = flight.aircraftId

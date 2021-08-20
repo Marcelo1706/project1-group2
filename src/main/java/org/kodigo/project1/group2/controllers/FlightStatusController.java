@@ -5,6 +5,9 @@
  */
 package org.kodigo.project1.group2.controllers;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import org.kodigo.project1.group2.models.Country;
 import org.kodigo.project1.group2.models.Database;
 import org.kodigo.project1.group2.models.Flight;
 
@@ -15,14 +18,28 @@ import org.kodigo.project1.group2.models.Flight;
  */
 public class FlightStatusController {
     
-    private FlightStatusController flightStatus = new FlightStatusController();
     private Database databaseHandler;
     
     public FlightStatusController(){
         this.databaseHandler = new Database();
     }
     
-        public boolean newFlightStatus(String flightStatus, String flightLog, Flight flight){
+    public DefaultTableModel getFlightStatusTable(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Flight ID");
+        model.addColumn("Flight Status");
+        model.addColumn("Flight Log");
+        Object[][] data = databaseHandler.select("flightStatus", "flightStatusId, flightId, flightStatus, flightLog", null);
+        
+        for (Object[] dataRow : data) {
+            model.addRow(dataRow);
+        }
+        return model;
+    }
+    
+    
+    public boolean newFlightStatus(String flightStatus, String flightLog, Flight flight){
         return databaseHandler.insert("flightStatus", "flightStatus, flightLog, flight", "'"+flightStatus+"','"+flightLog+"','"+flight.getFlightId()+"'");
     }
     

@@ -5,9 +5,12 @@
  */
 package org.kodigo.project1.group2.views;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import org.kodigo.project1.group2.controllers.FlightController;
 import org.kodigo.project1.group2.utils.ComboItem;
 import org.kodigo.project1.group2.controllers.FlightStatusController;
+import org.kodigo.project1.group2.models.Flight;
 
 /**
  *
@@ -15,11 +18,14 @@ import org.kodigo.project1.group2.controllers.FlightStatusController;
  */
 public class FlightStatus extends javax.swing.JFrame {
 
+    private FlightStatusController flightstatus = new FlightStatusController();
+    private FlightController flightController = new FlightController();
     /**
      * Creates new form FlightStatus
      */
     public FlightStatus() {
         initComponents();
+        reloadTable();
     }
 
     /**
@@ -35,7 +41,7 @@ public class FlightStatus extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txt_flight_status = new javax.swing.JTextField();
         txt_flight_log = new javax.swing.JTextField();
-        cb_flight = new javax.swing.JComboBox<>();
+        cb_flight = new javax.swing.JComboBox<ComboItem>();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -48,8 +54,6 @@ public class FlightStatus extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Flight Status");
-
-        cb_flight.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Flight Log:");
 
@@ -91,15 +95,14 @@ public class FlightStatus extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_flight_status, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_flight_log, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_flight_status, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_flight_log, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -161,19 +164,19 @@ public class FlightStatus extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FlightStatusController flightstatus = new FlightStatusController();
-//        String flight_status = txt_flight_status.getText();
-//        String flight_log = txt_flight_status.getText();
-//        
-//        Object flight_search = cb_flight.getSelectedItem();
-//        int flight_value = Integer.parseInt(((ComboItem)flight_search).getValue());
-//        
-//        
-//        if(flightstatus.newFlightStatus(flight_status, flight_log, flight)){
-//            JOptionPane.showMessageDialog(null,"City successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
-//        }else{
-//            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
-//        }
+
+        String flight_status = txt_flight_status.getText();
+        String flight_log = txt_flight_status.getText();
+        
+        Object flight_search = cb_flight.getSelectedItem();
+        int flight_value = Integer.parseInt(((ComboItem)flight_search).getValue());
+        
+        
+        if(flightstatus.newFlightStatus(flight_status, flight_log, new Flight(flight_value))){
+            JOptionPane.showMessageDialog(null,"City successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -210,9 +213,20 @@ public class FlightStatus extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void reloadTable(){
+        jTable1.setModel(flightstatus.getFlightStatusTable());
+    }
+    
+    public void loadComboBox(){
+        ArrayList<Flight> flights = flightController.getCountriesList();
+        flights.forEach((flight) ->{
+            cb_flight.addItem(new ComboItem(flight.getFlightNumber(), String.valueOf(flight.getFlightId())));
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cb_flight;
+    private javax.swing.JComboBox<ComboItem> cb_flight;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
