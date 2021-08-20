@@ -5,6 +5,7 @@
  */
 package org.kodigo.project1.group2.controllers;
 
+import javax.swing.table.DefaultTableModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.kodigo.project1.group2.models.Aircraft;
@@ -21,6 +22,21 @@ public class AircraftController {
     
     public AircraftController(){
         this.databaseHandler = new Database();
+    }
+    
+    public DefaultTableModel getAircraftTable(){
+        DefaultTableModel model = new DefaultTableModel();        
+        model.addColumn("Aircraft");
+        model.addColumn("Model");
+        model.addColumn("Passenger Capacity");
+        model.addColumn("Fuel Range");
+        model.addColumn("Airline");
+        Object[][] data = databaseHandler.select("aircraft", "model, passengerCapacity, fuelRange, airline", null);
+               
+        for (Object[] dataRow : data) {
+            model.addRow(dataRow);
+        }
+        return model;
     }
     
     public boolean newAircraft(String model, int passengerCapacity, double fuelRange, Airline airline){
