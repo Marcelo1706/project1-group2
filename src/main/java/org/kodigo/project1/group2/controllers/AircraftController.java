@@ -26,12 +26,12 @@ public class AircraftController {
     
     public DefaultTableModel getAircraftTable(){
         DefaultTableModel model = new DefaultTableModel();        
-        model.addColumn("Aircraft");
+        model.addColumn("ID");
         model.addColumn("Model");
         model.addColumn("Passenger Capacity");
         model.addColumn("Fuel Range");
         model.addColumn("Airline");
-        Object[][] data = databaseHandler.select("aircraft", "model, passengerCapacity, fuelRange, airline", null);
+        Object[][] data = databaseHandler.select("aircraft", "aircraftId, model, passengerCapacity, fuelRange, airlineId", null);
                
         for (Object[] dataRow : data) {
             model.addRow(dataRow);
@@ -40,11 +40,11 @@ public class AircraftController {
     }
     
     public boolean newAircraft(String model, int passengerCapacity, double fuelRange, Airline airline){
-        return databaseHandler.insert("aircraft", "model, passengerCapacity, fuelRange, airline", "'"+model+"','"+passengerCapacity+"','"+fuelRange+"','"+airline.getAirlineId()+"'");
+        return databaseHandler.insert("aircraft", "model, passengerCapacity, fuelRange, airlineId", "'"+model+"','"+passengerCapacity+"','"+fuelRange+"','"+airline.getAirlineId()+"'");
     }
     
     public boolean updateAircraft(int id, String model, int passengerCapacity, double fuelRange, Airline airline){
-        return databaseHandler.update("aircraft", "model = '"+model+"', passengerCapacity = '"+passengerCapacity+"', fuelRange = '"+fuelRange+"', airline = '"+airline.getAirlineId()+"'", "aircraftId = " + id);
+        return databaseHandler.update("aircraft", "model = '"+model+"', passengerCapacity = '"+passengerCapacity+"', fuelRange = '"+fuelRange+"', airlineId = '"+airline.getAirlineId()+"'", "aircraftId = " + id);
     }
     
     public boolean deleteAircraft(int id){

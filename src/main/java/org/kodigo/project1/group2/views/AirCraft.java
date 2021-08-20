@@ -5,7 +5,11 @@
  */
 package org.kodigo.project1.group2.views;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import org.kodigo.project1.group2.controllers.AircraftController;
+import org.kodigo.project1.group2.controllers.AirlineController;
+import org.kodigo.project1.group2.models.Airline;
 import org.kodigo.project1.group2.utils.ComboItem;
 
 /**
@@ -14,13 +18,17 @@ import org.kodigo.project1.group2.utils.ComboItem;
  */
 public class AirCraft extends javax.swing.JFrame {
 
+    
+    private AirlineController airlineController = new AirlineController();
+    private AircraftController aircraftController = new AircraftController();
     /**
      * Creates new form AirCraft
      */
     public AirCraft() {
         initComponents();
         setLocationRelativeTo(null);
-
+        reloadTable();
+        loadComboBox();
     }
 
     /**
@@ -214,7 +222,7 @@ public class AirCraft extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -229,16 +237,39 @@ public class AirCraft extends javax.swing.JFrame {
     }//GEN-LAST:event_editCountryButtonActionPerformed
 
     private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DeleteActionPerformed
-        // TODO add your handling code here:
+        if(jTable1.getSelectedRowCount() > 0 ){
+            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected aircraft?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                int aircraftId = Integer.parseInt((String) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0));
+                if(aircraftController.deleteAircraft(aircraftId)){
+                    JOptionPane.showMessageDialog(null,"Aircraft successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+                }
+                Txt_Model.setText("");
+                Txt_Passenger_capacity.setText("");
+                Txt_Fuel_Range.setText("");
+                reloadTable();
+            }
+        }else{
+         JOptionPane.showMessageDialog(null,"Please select an aircraft to continue","Info",JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_Btn_DeleteActionPerformed
 
     private void Btn_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_createActionPerformed
         AircraftController airController = new AircraftController();
         Object item = Cb_Airline.getSelectedItem();
         String value = ((ComboItem)item).getValue();
-       /* airController.newAircraft(Txt_Model.getText(), Integer.parseInt(Txt_Passenger_capacity.getText()),
-                Double.parseDouble(Txt_Fuel_Range.getText()), value);*/
-        
+        if(airController.newAircraft(Txt_Model.getText(), Integer.parseInt(Txt_Passenger_capacity.getText()),
+                Double.parseDouble(Txt_Fuel_Range.getText()), new Airline(Integer.parseInt(value),((ComboItem)item).toString()))){
+            JOptionPane.showMessageDialog(null,"Aircraft successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        Txt_Model.setText("");
+        Txt_Passenger_capacity.setText("");
+        Txt_Fuel_Range.setText("");
+
+        reloadTable();
     }//GEN-LAST:event_Btn_createActionPerformed
 
     /**
@@ -274,6 +305,17 @@ public class AirCraft extends javax.swing.JFrame {
                 new AirCraft().setVisible(true);
             }
         });
+    }
+    
+    public void loadComboBox(){
+        ArrayList<Airline> airlines = airlineController.getAirlinesList();
+        airlines.forEach((airline) -> {
+            Cb_Airline.addItem(new ComboItem(airline.getAirlineName() , String.valueOf(airline.getAirlineId())));
+        });
+    }
+    
+    private void reloadTable(){
+        jTable1.setModel(aircraftController.getAircraftTable());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
