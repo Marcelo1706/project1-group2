@@ -48,7 +48,7 @@
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBox1" min="-2" pref="145" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                       <Component id="AddCountryButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
@@ -143,12 +143,12 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Select a country from the table to edit or delete."/>
+        <Property name="text" type="java.lang.String" value="Select a City from the table to edit or delete."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="editCountryButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Delete Selected Country"/>
+        <Property name="text" type="java.lang.String" value="Delete Selected City"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCountryButtonActionPerformed"/>
@@ -166,7 +166,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Country Name: "/>
+        <Property name="text" type="java.lang.String" value="Country: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox1">

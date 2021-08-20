@@ -34,7 +34,7 @@ public class FlightController {
         model.addColumn("Departure Time");
         model.addColumn("Arrival Time");
         model.addColumn("Aircraft");
-        Object[][] data = databaseHandler.select("flight", "flightNumber,originCity,destinationCity,departureTime,arrivalTime,aircraft", null);
+        Object[][] data = databaseHandler.select("flight", "flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraft", null);
         
         for (Object[] dataRow : data) {
             model.addRow(dataRow);
@@ -43,7 +43,7 @@ public class FlightController {
     }
     
     public boolean newFlight(String flightNumber, City originCity, City destinationCity, Date departureTime, Date arrivalTime, Aircraft aircraft){
-        return databaseHandler.insert("flight", "flightNumber, originCity, destinationCity, departureTime, arrivalTime, aircraft", "'"+flightNumber+"','"+originCity.getCityId()+"','"+destinationCity.getCityId()+"','"+departureTime+"','"+arrivalTime+"','"+aircraft.getAircraftId()+"'");
+        return databaseHandler.insert("flight", "flightNumber, originCityId, destinationCityId, departureTime, arrivalTime, aircraft", "'"+flightNumber+"','"+originCity.getCityId()+"','"+destinationCity.getCityId()+"','"+departureTime+"','"+arrivalTime+"','"+aircraft.getAircraftId()+"'");
     }
     
     public boolean updateFlight(String flightNumber, City originCity, City destinationCity, Date departureTime, Date arrivalTime){
