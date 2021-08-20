@@ -223,7 +223,7 @@ public class CityManagement extends javax.swing.JFrame {
     }
     
     private void loadComboBox(){
-        ArrayList<ComboItem> comboItems = cityController.loadCitiesComboItem();
+        ArrayList<ComboItem> comboItems = countryController.loadCountriesComboItem();
         comboItems.forEach((item) -> {
             jComboBox1.addItem(item);
         });
