@@ -47,7 +47,7 @@ public class CityManagement extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("City Management");
@@ -149,8 +149,6 @@ public class CityManagement extends javax.swing.JFrame {
                     .addComponent(editCountryButton))
                 .addGap(24, 24, 24))
         );
-
-        AddCountryButton.getAccessibleContext().setAccessibleName("Add City");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
