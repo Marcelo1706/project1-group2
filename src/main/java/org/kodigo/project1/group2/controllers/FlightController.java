@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.kodigo.project1.group2.models.Aircraft;
-import org.kodigo.project1.group2.models.City;
 import org.kodigo.project1.group2.models.Database;
 import org.kodigo.project1.group2.models.Flight;
 
@@ -34,7 +33,7 @@ public class FlightController {
         model.addColumn("Departure Time");
         model.addColumn("Arrival Time");
         model.addColumn("Aircraft");
-        Object[][] data = databaseHandler.select("flight", "flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraft", null);
+        Object[][] data = databaseHandler.select("flight", "flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraftId", null);
         
         for (Object[] dataRow : data) {
             model.addRow(dataRow);
@@ -42,12 +41,13 @@ public class FlightController {
         return model;
     }
     
-    public boolean newFlight(String flightNumber, City originCity, City destinationCity, Date departureTime, Date arrivalTime, Aircraft aircraft){
-        return databaseHandler.insert("flight", "flightNumber, originCityId, destinationCityId, departureTime, arrivalTime, aircraft", "'"+flightNumber+"','"+originCity.getCityId()+"','"+destinationCity.getCityId()+"','"+departureTime+"','"+arrivalTime+"','"+aircraft.getAircraftId()+"'");
+    
+    public boolean newFlight(String flightNumber, int originCityId, int destinationCityId, Date departureTime, Date arrivalTime, Aircraft aircraft){
+        return databaseHandler.insert("flight", "flightNumber, originCityId, destinationCityId, departureTime, arrivalTime, aircraftId", "'"+flightNumber+"','"+originCityId+"','"+destinationCityId+"','"+departureTime+"','"+arrivalTime+"','"+aircraft.getAircraftId()+"'");
     }
     
-    public boolean updateFlight(String flightNumber, City originCity, City destinationCity, Date departureTime, Date arrivalTime){
-        return databaseHandler.update("flight", "flightNumber = '"+flightNumber+"', originCityId = '"+originCity.getCityId()+"', destinationCityId = '"+destinationCity.getCityId()+"', departureTime = '"+departureTime+"', arrivalTime = '"+arrivalTime+"'", "flightNumber = " + flightNumber);
+    public boolean updateFlight(String flightNumber, int originCityId, int destinationCityId, Date departureTime, Date arrivalTime, Aircraft aircraft){
+        return databaseHandler.update("flight", "flightNumber = '"+flightNumber+"', originCityId = '"+originCityId+"', destinationCityId = '"+destinationCityId+"', departureTime = '"+departureTime+"', arrivalTime = '"+arrivalTime+"'", "flightNumber = " + flightNumber);
     }
     
     public boolean deleteFlight(int flightId){

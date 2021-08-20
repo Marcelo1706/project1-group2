@@ -5,6 +5,7 @@
  */
 package org.kodigo.project1.group2.controllers;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,15 @@ public class AircraftController {
     
     public AircraftController(){
         this.databaseHandler = new Database();
+    }
+    
+    public ArrayList<Aircraft> getAircraftList(){
+        ArrayList<Aircraft> list = new ArrayList<>();
+        Object[][] data = databaseHandler.select("aircraft", "aircraftId, model", null);
+        for (Object[] row : data) {
+            list.add(new Aircraft(Integer.parseInt((String) row[0]), (String) row[1]));
+        }
+        return list;
     }
     
     public DefaultTableModel getAircraftTable(){
