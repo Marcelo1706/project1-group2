@@ -16,7 +16,7 @@ import org.kodigo.project1.group2.utils.ComboItem;
  * @author JoseM
  */
 public class CityController {
-    private CountryController countryController = new CountryController();
+    private CityController cityController = new CityController();
     private Database databaseHandler;
 
     public CityController() {

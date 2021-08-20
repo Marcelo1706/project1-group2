@@ -5,10 +5,19 @@
  */
 package org.kodigo.project1.group2.controllers;
 
+import org.kodigo.project1.group2.models.Database;
+
+
 /**
  *
  * @author Néstor Recinos
  */
 public class FlightStatusController {
     
+    private FlightStatusController flightStatus = new FlightStatusController();
+    private Database databaseHandler;
+    
+    public FlightStatusController(){
+        this.databaseHandler = new Database();
+    }
 }
