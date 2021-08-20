@@ -25,10 +25,12 @@ public class NewFlight extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         CountryController countries = new CountryController();
+        countries.getCountries();
         jComboBox1.removeAllItems();
         jComboBox2.removeAllItems();
         jComboBox3.removeAllItems();
         jComboBox4.removeAllItems();
+        //for(int i = 0; i < countries.)
         
         
         

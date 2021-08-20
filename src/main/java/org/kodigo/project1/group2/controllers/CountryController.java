@@ -23,18 +23,18 @@ public class CountryController {
     public CountryController(){
         this.databaseHandler = new Database();
     }
+
     public ArrayList<Country> getCountriesList(){
         ArrayList<Country> list = new ArrayList<Country>();
-        
         Object[][] data = databaseHandler.select("country", "countryId,countryName", null);
-        
         for(int i = 0; i < data.length; i++){
             list.add(new Country ((int)data[i][0], (String)data[i][1]));
         }
-        
         return list;
     }
-    public DefaultTableModel getCountries(){
+
+    
+    public DefaultTableModel getCountriesTable(){
         DefaultTableModel model = new DefaultTableModel();        
         model.addColumn("ID");        
         model.addColumn("Country");
