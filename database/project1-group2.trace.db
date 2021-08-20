@@ -224,3 +224,25 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/Documento
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
 	... 36 more
+2021-08-19 23:37:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ORIGINCITY" no encontrada
+Column "ORIGINCITY" not found; SQL statement:
+SELECT flightNumber,originCity,destinationCity,departureTime,arrivalTime,aircraft FROM flight [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.command.dml.Select.prepare(Select.java:1206)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:76)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:352)
+	at org.kodigo.project1.group2.models.Database.select(Database.java:54)
+	at org.kodigo.project1.group2.controllers.FlightController.getFlights(FlightController.java:37)
+	at org.kodigo.project1.group2.views.FlightManagement.reloadTable(FlightManagement.java:284)
+	at org.kodigo.project1.group2.views.FlightManagement.<init>(FlightManagement.java:24)
+	at org.kodigo.project1.group2.views.Main$1.run(Main.java:22)

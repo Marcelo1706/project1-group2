@@ -14,14 +14,14 @@ import org.kodigo.project1.group2.controllers.FlightController;
  */
 public class FlightManagement extends javax.swing.JFrame {
 
-    private FlightController flightController = new FlightController();
+    private FlightController flightcontroller = new FlightController();
     /**
      * Creates new form GestionVuelo2
      */
     public FlightManagement() {
         initComponents();
         setLocationRelativeTo(null);
-
+        reloadTable();
     }
 
     /**
@@ -40,7 +40,7 @@ public class FlightManagement extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Table_Flight = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         Cb_Select = new javax.swing.JComboBox<>();
@@ -82,7 +82,7 @@ public class FlightManagement extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table_Flight.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,7 +93,7 @@ public class FlightManagement extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Table_Flight);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,7 +126,7 @@ public class FlightManagement extends javax.swing.JFrame {
             }
         });
 
-        Cb_Select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Country", "City" }));
+        Cb_Select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Country", "City", "Airline" }));
         Cb_Select.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Cb_SelectActionPerformed(evt);
@@ -231,6 +231,9 @@ public class FlightManagement extends javax.swing.JFrame {
         }else if(select == "City"){
             CityManagement city = new CityManagement();
             city.setVisible(true);
+        }else if(select == "Airline"){
+            Airline airline = new Airline();
+            airline.setVisible(true);
         }
     }//GEN-LAST:event_Cb_SelectActionPerformed
 
@@ -278,11 +281,12 @@ public class FlightManagement extends javax.swing.JFrame {
     }
     
     private void reloadTable(){
-        jTable1.setModel(flightController.getFlights());
+        Table_Flight.setModel(flightcontroller.getFlights());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Cb_Select;
+    private javax.swing.JTable Table_Flight;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -293,6 +297,5 @@ public class FlightManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
