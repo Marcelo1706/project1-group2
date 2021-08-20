@@ -8,7 +8,6 @@ package org.kodigo.project1.group2.views;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import com.github.lgooddatepicker.components.TimePickerSettings;
-import com.github.lgooddatepicker.optionalusertools.DateTimeChangeListener;
 import com.github.lgooddatepicker.zinternaltools.DateTimeChangeEvent;
 import java.io.File;
 import java.time.LocalDateTime;
@@ -33,6 +32,7 @@ public class ExcelManagement extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         dtpFlightDate.addDateTimeChangeListener((DateTimeChangeEvent event) -> {
             flightDate = event.getNewDateTimeStrict();
+            System.out.println(flightDate);
         });
     }
 
