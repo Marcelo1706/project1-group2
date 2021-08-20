@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.kodigo.project1.group2.models.Airline;
-import org.kodigo.project1.group2.models.Country;
 import org.kodigo.project1.group2.models.Database;
 
 /**
@@ -52,7 +51,7 @@ public class AirlineController {
    }
    
    public boolean updateAirline(int id, String airlineName){
-       return databaseHandler.update("airline", "airlineName='"+airlineName+"'", "airlineId = "+id);
+       return databaseHandler.update("airline", "airlineName = '" +airlineName+"'", "airlineId = " + id);
    }
            
    public boolean deleteAirline(int id){

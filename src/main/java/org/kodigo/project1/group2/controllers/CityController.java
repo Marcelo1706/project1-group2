@@ -6,6 +6,7 @@
 package org.kodigo.project1.group2.controllers;
 
 import java.util.ArrayList;
+import org.kodigo.project1.group2.models.City;
 import org.kodigo.project1.group2.models.Country;
 import org.kodigo.project1.group2.models.Database;
 import org.kodigo.project1.group2.utils.ComboItem;
@@ -22,11 +23,20 @@ public class CityController {
         this.databaseHandler = new Database();
     }
     
-    public ArrayList<ComboItem> loadCountriesComboItem(){
+    public ArrayList<City> getCitiesList(){
+        ArrayList<City> list = new ArrayList<>();
+        Object[][] data = databaseHandler.select("city", "cityId,cityName", null);
+        for (Object[] row : data) {
+            list.add(new City( Integer.parseInt((String) row[0]), (String) row[1]));
+        }
+        return list;
+    }
+    
+    public ArrayList<ComboItem> loadCitiesComboItem(){
         ArrayList<ComboItem> comboItems = new ArrayList<>();
-        ArrayList<Country> countryList = countryController.getCountriesList();
-        countryList.forEach((country) -> {
-            comboItems.add(new ComboItem(country.getCountryName(), String.valueOf(country.getCountryId())));
+        ArrayList<City> cityList = getCitiesList();
+        cityList.forEach((country) -> {
+            comboItems.add(new ComboItem(country.getCityName(), String.valueOf(country.getCityId())));
         });
         
         return comboItems;

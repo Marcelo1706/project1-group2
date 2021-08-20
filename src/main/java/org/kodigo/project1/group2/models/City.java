@@ -18,7 +18,12 @@ public class City {
     @Getter @Setter private double latitude;
     @Getter @Setter private double longitude;
     @Getter @Setter private Country country;
-
+    
+    public City(int cityId, String cityName) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+    }
+    
     public City(int cityId, String cityName, double latitude, double longitude, Country country) {
         this.cityId = cityId;
         this.cityName = cityName;
