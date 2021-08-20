@@ -26,5 +26,10 @@ public class Aircraft {
         this.fuelRange = fuelRange;
         this.airline = airline;
     }
+
+    public Aircraft(int aircraftId, String model) {
+        this.aircraftId = aircraftId;
+        this.model = model;
+    }
     
 }

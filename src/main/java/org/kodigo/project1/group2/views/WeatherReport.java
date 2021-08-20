@@ -5,9 +5,13 @@
  */
 package org.kodigo.project1.group2.views;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.kodigo.project1.group2.controllers.CityController;
 import org.kodigo.project1.group2.controllers.CountryController;
+import org.kodigo.project1.group2.controllers.WeatherController;
 import org.kodigo.project1.group2.utils.ComboItem;
 
 /**
@@ -18,7 +22,7 @@ public class WeatherReport extends javax.swing.JFrame {
 
     private CityController cityController = new CityController();
     private CountryController countryController = new CountryController();
-
+    private WeatherController weatherController = new WeatherController();
 
     /**
      * Creates new form WeatherReport
@@ -134,7 +138,16 @@ public class WeatherReport extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Object countryItem = comboCountry.getSelectedItem();
+        String country = ((ComboItem)countryItem).toString();
+        Object cityItem = ComboCity.getSelectedItem();
+        String city = ((ComboItem)cityItem).toString();
         
+        try {
+            jLabel1.setText("Current Weather is: "+weatherController.getWeatherConditions(country, city));
+        } catch (IOException ex) {
+            Logger.getLogger(WeatherReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void itemStateChangedHandler(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_itemStateChangedHandler

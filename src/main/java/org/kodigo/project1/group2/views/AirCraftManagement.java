@@ -5,19 +5,30 @@
  */
 package org.kodigo.project1.group2.views;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import org.kodigo.project1.group2.controllers.AircraftController;
+import org.kodigo.project1.group2.controllers.AirlineController;
+import org.kodigo.project1.group2.models.Airline;
+import org.kodigo.project1.group2.utils.ComboItem;
+
 /**
  *
  * @author miner
  */
-public class AirCraft extends javax.swing.JFrame {
+public class AirCraftManagement extends javax.swing.JFrame {
 
+    
+    private AirlineController airlineController = new AirlineController();
+    private AircraftController aircraftController = new AircraftController();
     /**
      * Creates new form AirCraft
      */
-    public AirCraft() {
+    public AirCraftManagement() {
         initComponents();
         setLocationRelativeTo(null);
-
+        reloadTable();
+        loadComboBox();
     }
 
     /**
@@ -42,7 +53,7 @@ public class AirCraft extends javax.swing.JFrame {
         Txt_Model = new javax.swing.JTextField();
         Txt_Passenger_capacity = new javax.swing.JTextField();
         Txt_Fuel_Range = new javax.swing.JTextField();
-        Cb_Airline = new javax.swing.JComboBox<>();
+        Cb_Airline = new javax.swing.JComboBox<ComboItem>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Btn_create = new javax.swing.JButton();
@@ -82,8 +93,6 @@ public class AirCraft extends javax.swing.JFrame {
             }
         });
 
-        Cb_Airline.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -98,6 +107,11 @@ public class AirCraft extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         Btn_create.setText("Add Aircraft");
+        Btn_create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_createActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Select a Aircraft from the table to edit or delete.");
 
@@ -208,7 +222,7 @@ public class AirCraft extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -223,8 +237,40 @@ public class AirCraft extends javax.swing.JFrame {
     }//GEN-LAST:event_editCountryButtonActionPerformed
 
     private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DeleteActionPerformed
-        // TODO add your handling code here:
+        if(jTable1.getSelectedRowCount() > 0 ){
+            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected aircraft?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                int aircraftId = Integer.parseInt((String) jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0));
+                if(aircraftController.deleteAircraft(aircraftId)){
+                    JOptionPane.showMessageDialog(null,"Aircraft successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+                }
+                Txt_Model.setText("");
+                Txt_Passenger_capacity.setText("");
+                Txt_Fuel_Range.setText("");
+                reloadTable();
+            }
+        }else{
+         JOptionPane.showMessageDialog(null,"Please select an aircraft to continue","Info",JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_Btn_DeleteActionPerformed
+
+    private void Btn_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_createActionPerformed
+        AircraftController airController = new AircraftController();
+        Object item = Cb_Airline.getSelectedItem();
+        String value = ((ComboItem)item).getValue();
+        if(airController.newAircraft(Txt_Model.getText(), Integer.parseInt(Txt_Passenger_capacity.getText()),
+                Double.parseDouble(Txt_Fuel_Range.getText()), new Airline(Integer.parseInt(value),((ComboItem)item).toString()))){
+            JOptionPane.showMessageDialog(null,"Aircraft successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        Txt_Model.setText("");
+        Txt_Passenger_capacity.setText("");
+        Txt_Fuel_Range.setText("");
+
+        reloadTable();
+    }//GEN-LAST:event_Btn_createActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,29 +289,41 @@ public class AirCraft extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AirCraft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AirCraftManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AirCraft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AirCraftManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AirCraft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AirCraftManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AirCraft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AirCraftManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AirCraft().setVisible(true);
+                new AirCraftManagement().setVisible(true);
             }
         });
+    }
+    
+    public void loadComboBox(){
+        ArrayList<Airline> airlines = airlineController.getAirlinesList();
+        airlines.forEach((airline) -> {
+            Cb_Airline.addItem(new ComboItem(airline.getAirlineName() , String.valueOf(airline.getAirlineId())));
+        });
+    }
+    
+    private void reloadTable(){
+        jTable1.setModel(aircraftController.getAircraftTable());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Delete;
     private javax.swing.JButton Btn_Update;
     private javax.swing.JButton Btn_create;
-    private javax.swing.JComboBox<String> Cb_Airline;
+    private javax.swing.JComboBox<ComboItem> Cb_Airline;
     private javax.swing.JTextField Txt_Fuel_Range;
     private javax.swing.JTextField Txt_Model;
     private javax.swing.JTextField Txt_Number;

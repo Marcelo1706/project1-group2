@@ -249,7 +249,7 @@ public class FlightManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_Cb_SelectActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        AirCraft airplane = new AirCraft();
+        AirCraftManagement airplane = new AirCraftManagement();
         airplane.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
