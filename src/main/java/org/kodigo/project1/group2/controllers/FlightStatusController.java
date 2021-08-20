@@ -6,6 +6,7 @@
 package org.kodigo.project1.group2.controllers;
 
 import org.kodigo.project1.group2.models.Database;
+import org.kodigo.project1.group2.models.Flight;
 
 
 /**
@@ -20,4 +21,17 @@ public class FlightStatusController {
     public FlightStatusController(){
         this.databaseHandler = new Database();
     }
+    
+    public boolean newFlightStatus(String flightStatus, String flightLog, Flight flight){
+        return databaseHandler.insert("flightStatus", "flightStatus, flightLog, flight", "'"+flightStatus+"','"+flightLog+"','"+flight.getFlightId()+"'");
+    }
+    
+    public boolean updateFlightStatus(int flightStatusId,String flightStatus, String flightLog, Flight flight){
+        return databaseHandler.update("flightStatus", "flightStatus = '"+flightStatus+"', flightLog = '"+flightLog+"', flightLogId = '"+flight.getFlightId()+"'", "flightStatusId = " + flightStatusId);
+    }
+    
+    public boolean deleteStatus(int flightStatusId){
+        return databaseHandler.delete("flightStatus", "flightStatusId = " + flightStatusId);
+    }
+    
 }
