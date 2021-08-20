@@ -5,6 +5,8 @@
  */
 package org.kodigo.project1.group2.controllers;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.kodigo.project1.group2.models.Airline;
@@ -20,6 +22,28 @@ public class AirlineController {
     
     public AirlineController(){
         this.databaseHandler = new Database();
+    }
+    
+    public ArrayList<Airline> getAirlinesList(){
+        ArrayList<Airline> list = new ArrayList<>();
+        Object[][] data = databaseHandler.select("airline", "airlineId,airlineName", null);
+        for (Object[] row : data) {
+            list.add(new Airline( Integer.parseInt((String) row[0]), (String) row[1]));
+        }
+        return list;
+    }
+
+    
+    public DefaultTableModel getAirlinesTable(){
+        DefaultTableModel model = new DefaultTableModel();        
+        model.addColumn("ID");        
+        model.addColumn("Airline");
+        Object[][] data = databaseHandler.select("airline", "airlineId,airlineName", null);
+               
+        for (Object[] dataRow : data) {
+            model.addRow(dataRow);
+        }
+        return model;
     }
     
    public boolean newAirline(String airlineName){
