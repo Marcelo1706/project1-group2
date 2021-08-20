@@ -22,7 +22,7 @@ public class FlightStatusController {
         this.databaseHandler = new Database();
     }
     
-    public boolean newFlightStatus(String flightStatus, String flightLog, Flight flight){
+        public boolean newFlightStatus(String flightStatus, String flightLog, Flight flight){
         return databaseHandler.insert("flightStatus", "flightStatus, flightLog, flight", "'"+flightStatus+"','"+flightLog+"','"+flight.getFlightId()+"'");
     }
     
