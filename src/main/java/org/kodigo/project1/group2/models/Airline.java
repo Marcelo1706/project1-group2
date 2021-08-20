@@ -12,7 +12,7 @@ import lombok.Setter;
  *
  * @author JoseM
  */
-class Airline {
+public class Airline {
     @Getter @Setter private int airlineId;
     @Getter @Setter private String airlineName;
     
