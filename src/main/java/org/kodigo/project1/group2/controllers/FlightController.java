@@ -34,7 +34,7 @@ public class FlightController {
         model.addColumn("Departure Time");
         model.addColumn("Arrival Time");
         model.addColumn("Aircraft");
-        Object[][] data = databaseHandler.select("flight", "flightNumber,originCity,destinationCity,departureTime,arrivalTime,aircraft", null);
+        Object[][] data = databaseHandler.select("flight", "flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraft", null);
         
         for (Object[] dataRow : data) {
             model.addRow(dataRow);

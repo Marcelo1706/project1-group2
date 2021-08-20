@@ -77,9 +77,9 @@ public class CityManagement extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(countryTable);
 
-        jLabel3.setText("Select a country from the table to edit or delete.");
+        jLabel3.setText("Select a City from the table to edit or delete.");
 
-        editCountryButton.setText("Delete Selected Country");
+        editCountryButton.setText("Delete Selected City");
         editCountryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCountryButtonActionPerformed(evt);
@@ -90,7 +90,7 @@ public class CityManagement extends javax.swing.JFrame {
 
         jLabel5.setText("N/A");
 
-        jLabel6.setText("Country Name: ");
+        jLabel6.setText("Country: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +118,7 @@ public class CityManagement extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addComponent(AddCountryButton)
                         .addGap(25, 25, 25))
                     .addGroup(layout.createSequentialGroup()
@@ -158,8 +158,10 @@ public class CityManagement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCountryButtonActionPerformed
-        if(countryController.newCountry(txtCountry.getText())){
-            JOptionPane.showMessageDialog(null,"Country successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
+        Object item = jComboBox1.getSelectedItem();
+        String value = ((ComboItem)item).getValue();
+        if(cityController.newCity(txtCountry.getText(),Integer.parseInt(value))){
+            JOptionPane.showMessageDialog(null,"City successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -169,10 +171,10 @@ public class CityManagement extends javax.swing.JFrame {
 
     private void editCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCountryButtonActionPerformed
         if(countryTable.getSelectedRowCount() > 0 ){
-            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected country?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                int countryId = Integer.parseInt((String) countryTable.getModel().getValueAt(countryTable.getSelectedRow(), 0));
-                if(countryController.deleteCountry(countryId)){
-                    JOptionPane.showMessageDialog(null,"Country successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
+            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected city?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                int cityId = Integer.parseInt((String) countryTable.getModel().getValueAt(countryTable.getSelectedRow(), 0));
+                if(countryController.deleteCountry(cityId)){
+                    JOptionPane.showMessageDialog(null,"City successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
                 }
@@ -219,7 +221,7 @@ public class CityManagement extends javax.swing.JFrame {
     }
     
     private void reloadTable(){
-        countryTable.setModel(countryController.getCountriesTable());
+        countryTable.setModel(cityController.getCitiesTable());
     }
     
     private void loadComboBox(){

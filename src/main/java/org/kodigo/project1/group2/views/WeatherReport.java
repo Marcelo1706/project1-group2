@@ -67,6 +67,12 @@ public class WeatherReport extends javax.swing.JFrame {
 
         jLabel1.setText("Current Weather is: ");
 
+        comboCountry.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                itemStateChangedHandler(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,7 +134,14 @@ public class WeatherReport extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void itemStateChangedHandler(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_itemStateChangedHandler
+        // TODO add your handling code here:
+        String country = comboCountry.getSelectedItem().toString();
+        loadCityComboBox(country);        
+    }//GEN-LAST:event_itemStateChangedHandler
 
     /**
      * @param args the command line arguments
@@ -169,6 +182,16 @@ public class WeatherReport extends javax.swing.JFrame {
         ArrayList<ComboItem> comboItems = countryController.loadCountriesComboItem();
         comboItems.forEach((item) -> {
             comboCountry.addItem(item);
+        });
+    }
+    
+    private void loadCityComboBox(String country){
+        if(ComboCity.getItemCount() > 0){
+            ComboCity.removeAllItems();
+        }
+        ArrayList<ComboItem> comboItems = cityController.loadCitiesFromCertainCountry(country);
+        comboItems.forEach((item) -> {
+            ComboCity.addItem(item);
         });
     }
 
