@@ -242,9 +242,6 @@ public class FlightManagement extends javax.swing.JFrame {
         }else if(select == "City"){
             CityManagement city = new CityManagement();
             city.setVisible(true);
-        }else if(select == "Airline"){
-            Airline airline = new Airline();
-            airline.setVisible(true);
         }
     }//GEN-LAST:event_Cb_SelectActionPerformed
 
