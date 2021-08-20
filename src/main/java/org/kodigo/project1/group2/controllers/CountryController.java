@@ -25,10 +25,10 @@ public class CountryController {
     }
 
     public ArrayList<Country> getCountriesList(){
-        ArrayList<Country> list = new ArrayList<Country>();
+        ArrayList<Country> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("country", "countryId,countryName", null);
-        for(int i = 0; i < data.length; i++){
-            list.add(new Country ((int)data[i][0], (String)data[i][1]));
+        for (Object[] row : data) {
+            list.add(new Country( Integer.parseInt((String) row[0]), (String) row[1]));
         }
         return list;
     }

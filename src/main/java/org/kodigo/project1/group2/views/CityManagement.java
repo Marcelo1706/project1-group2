@@ -5,8 +5,11 @@
  */
 package org.kodigo.project1.group2.views;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import org.kodigo.project1.group2.controllers.CityController;
 import org.kodigo.project1.group2.controllers.CountryController;
+import org.kodigo.project1.group2.utils.ComboItem;
 
 /**
  *
@@ -15,6 +18,8 @@ import org.kodigo.project1.group2.controllers.CountryController;
 public class CityManagement extends javax.swing.JFrame {
 
     private final CountryController countryController = new CountryController();
+    private final CityController cityController = new CityController();
+
     
     /**
      * Creates new form CountryManagement
@@ -23,6 +28,7 @@ public class CityManagement extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         reloadTable();
+        loadComboBox();
     }
 
     /**
@@ -45,7 +51,7 @@ public class CityManagement extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<ComboItem>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -85,8 +91,6 @@ public class CityManagement extends javax.swing.JFrame {
         jLabel5.setText("N/A");
 
         jLabel6.setText("Country Name: ");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,12 +221,19 @@ public class CityManagement extends javax.swing.JFrame {
     private void reloadTable(){
         countryTable.setModel(countryController.getCountriesTable());
     }
+    
+    private void loadComboBox(){
+        ArrayList<ComboItem> comboItems = cityController.loadCountriesComboItem();
+        comboItems.forEach((item) -> {
+            jComboBox1.addItem(item);
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCountryButton;
     private javax.swing.JTable countryTable;
     private javax.swing.JButton editCountryButton;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<ComboItem> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

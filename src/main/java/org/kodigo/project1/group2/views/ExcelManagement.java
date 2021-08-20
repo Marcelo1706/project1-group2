@@ -6,7 +6,16 @@
 
 package org.kodigo.project1.group2.views;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import com.github.lgooddatepicker.components.TimePickerSettings;
+import com.github.lgooddatepicker.optionalusertools.DateTimeChangeListener;
+import com.github.lgooddatepicker.zinternaltools.DateTimeChangeEvent;
+import java.io.File;
+import java.time.LocalDateTime;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -14,12 +23,17 @@ import javax.swing.JFrame;
  */
 public class ExcelManagement extends javax.swing.JFrame {
 
+    private LocalDateTime flightDate;
+    private JFileChooser fileChooser = new JFileChooser();
+    
+    
     /** Creates new form ExcelManagement */
     public ExcelManagement() {
         initComponents();
-        
         setLocationRelativeTo(null);
-
+        dtpFlightDate.addDateTimeChangeListener((DateTimeChangeEvent event) -> {
+            flightDate = event.getNewDateTimeStrict();
+        });
     }
 
     /** This method is called from within the constructor to
@@ -49,7 +63,14 @@ public class ExcelManagement extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        dateTimePicker2 = new com.github.lgooddatepicker.components.DateTimePicker();
+        DatePickerSettings dateSettings = new DatePickerSettings();
+        TimePickerSettings timeSettings = new TimePickerSettings();
+        dateSettings.setAllowKeyboardEditing(false);
+        dateSettings.setAllowEmptyDates(false);
+        timeSettings.setAllowEmptyTimes(false);
+        timeSettings.setDisplaySpinnerButtons(true);
+        timeSettings.setInitialTimeToNow();
+        dtpFlightDate = new com.github.lgooddatepicker.components.DateTimePicker(dateSettings, timeSettings);
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         exportTable = new javax.swing.JTable();
@@ -58,12 +79,17 @@ public class ExcelManagement extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Excel Managment");
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Excel Management");
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         jLabel3.setText("Import Flight Data from Excel file");
 
         jButton3.setText("Select File");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Current File: none");
 
@@ -187,7 +213,7 @@ public class ExcelManagement extends javax.swing.JFrame {
                                         .addComponent(jLabel4)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(dateTimePicker2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dtpFlightDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextField1))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +233,7 @@ public class ExcelManagement extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dateTimePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dtpFlightDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jRadioButton2)))
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -247,6 +273,18 @@ public class ExcelManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileFilter filter = new FileNameExtensionFilter("Excel file", "xlsx");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showOpenDialog(this);
+        if(result == JFileChooser.APPROVE_OPTION){
+            File selectedFile = fileChooser.getSelectedFile();
+            jLabel5.setText("Selected File: "+selectedFile.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,11 +318,13 @@ public class ExcelManagement extends javax.swing.JFrame {
             em.setVisible(true);
             em.setExtendedState(em.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker2;
+    private com.github.lgooddatepicker.components.DateTimePicker dtpFlightDate;
     private javax.swing.JTable exportTable;
     private javax.swing.JTable importTable;
     private javax.swing.JButton jButton3;
