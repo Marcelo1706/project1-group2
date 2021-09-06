@@ -5,6 +5,15 @@
  */
 package org.kodigo.project1.group2.views;
 
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author miner
@@ -67,6 +76,11 @@ public class Mailing extends javax.swing.JFrame {
         });
 
         Btn_Send.setText("Send");
+        Btn_Send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_SendActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,6 +151,47 @@ public class Mailing extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Btn_Upload_filesActionPerformed
 
+    private void Btn_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SendActionPerformed
+        String recevier = Txt_Mail.getText();
+        String subject = Txt_Matter.getText();
+        String body = Txt_Message.getText();
+        sendMesasage(recevier, subject, body);
+    }//GEN-LAST:event_Btn_SendActionPerformed
+    
+    public void sendMesasage(String recevier, String subject, String body){
+       
+       //Colocar remitente(direccion de correo) personal con su contraseña respectiva
+       String sender = "danielreyes00@gmail.com";
+       String password = "";
+       
+       
+       Properties props = System.getProperties();
+       props.put("mail.smtp.host", "smtp.gmail.com");  
+       props.put("mail.smtp.user", sender); 
+       props.put("mail.smtp.auth", "true");    
+       props.put("mail.smtp.starttls.enable", "true"); 
+       props.put("mail.smtp.port", "587"); 
+       
+       Session session = Session.getDefaultInstance(props);
+       session.setDebug(true);
+       
+       MimeMessage message = new MimeMessage(session);
+       
+        try {
+            message.setFrom(new InternetAddress(sender));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recevier));
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com", sender, password);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+            JOptionPane.showMessageDialog(null,"Mail has been sent","Success",JOptionPane.INFORMATION_MESSAGE);
+        } catch (MessagingException me) {
+            me.printStackTrace();
+            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * @param args the command line arguments
      */
