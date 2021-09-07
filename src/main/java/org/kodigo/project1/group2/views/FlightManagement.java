@@ -5,6 +5,7 @@
  */
 package org.kodigo.project1.group2.views;
 
+import javax.swing.JOptionPane;
 import org.kodigo.project1.group2.controllers.FlightController;
 
 
@@ -227,8 +228,12 @@ public class FlightManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NewFlight flight = new NewFlight();
-        flight.setVisible(true);
+        NewFlight newflight1 = new NewFlight(this, true);
+        newflight1.setVisible(true);
+        reloadTable();
+
+        //NewFlight flight = new NewFlight();
+        //flight.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
