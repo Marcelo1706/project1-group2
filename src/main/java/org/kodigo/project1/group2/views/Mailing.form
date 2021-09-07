@@ -54,7 +54,7 @@
                               <Component id="jScrollPane1" alignment="0" pref="349" max="32767" attributes="0"/>
                               <Component id="Txt_Matter" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Txt_Attachment" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="Btn_Upload_files" max="32767" attributes="0"/>
                               </Group>
@@ -85,7 +85,7 @@
                   <Component id="jScrollPane1" min="-2" pref="198" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Txt_Attachment" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Btn_Upload_files" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -138,7 +138,7 @@
             <Property name="text" type="java.lang.String" value="Matter:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="Txt_Attachment">
           <Properties>
             <Property name="text" type="java.lang.String" value="Attach file:"/>
           </Properties>
