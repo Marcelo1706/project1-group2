@@ -42,6 +42,23 @@ public class FlightController {
         return model;
     }
     
+    public DefaultTableModel getFlights2(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Number");
+        model.addColumn("Flight Number");
+        model.addColumn("Origin City");
+        model.addColumn("Destination City");
+        model.addColumn("Departure Time");
+        model.addColumn("Arrival Time");
+        model.addColumn("Aircraft");
+        Object[][] data = databaseHandler.select("flight", "flightId,flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraftId", null);
+        
+        for (Object[] dataRow : data) {
+            model.addRow(dataRow);
+        }
+        return model;
+    }
+    
     public ArrayList<Flight> getCountriesList(){
         ArrayList<Flight> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("flight", "flightId,flightNumber", null);

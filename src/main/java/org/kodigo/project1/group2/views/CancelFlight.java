@@ -5,17 +5,26 @@
  */
 package org.kodigo.project1.group2.views;
 
+import javax.swing.JOptionPane;
+import org.kodigo.project1.group2.controllers.FlightController;
+
 /**
  *
  * @author Danny
  */
 public class CancelFlight extends javax.swing.JFrame {
+    private FlightController flightcontroller = new FlightController();
 
     /**
      * Creates new form CancelFlight
      */
     public CancelFlight() {
         initComponents();
+        reloadTable();
+    }
+    
+    private void reloadTable(){
+        jTable2.setModel(flightcontroller.getFlights2());
     }
 
     /**
@@ -37,7 +46,7 @@ public class CancelFlight extends javax.swing.JFrame {
         Txt_Number = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        Txt_Description = new javax.swing.JTextArea();
+        txtdescription = new javax.swing.JTextArea();
         Btn_cancel = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jEditorPane1);
@@ -67,11 +76,16 @@ public class CancelFlight extends javax.swing.JFrame {
 
         jLabel3.setText("Description:");
 
-        Txt_Description.setColumns(20);
-        Txt_Description.setRows(5);
-        jScrollPane3.setViewportView(Txt_Description);
+        txtdescription.setColumns(20);
+        txtdescription.setRows(5);
+        jScrollPane3.setViewportView(txtdescription);
 
         Btn_cancel.setText("Cancel Flight");
+        Btn_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,6 +148,23 @@ public class CancelFlight extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cancelActionPerformed
+        if(jTable2.getSelectedRowCount() > 0 ){
+            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected Fligh", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                int flightId = Integer.parseInt((String) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 0));
+                if(flightcontroller.deleteFlight(flightId)){
+                    JOptionPane.showMessageDialog(null,"flight successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+                }
+                System.out.print(flightId);
+                txtdescription.setText("");
+                reloadTable();
+            }
+        }else{
+         JOptionPane.showMessageDialog(null,"Please select a Flitgh to continue","Info",JOptionPane.INFORMATION_MESSAGE);
+        }    }//GEN-LAST:event_Btn_cancelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -171,7 +202,6 @@ public class CancelFlight extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cancel;
-    private javax.swing.JTextArea Txt_Description;
     private javax.swing.JTextField Txt_Number;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
@@ -182,5 +212,6 @@ public class CancelFlight extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextArea txtdescription;
     // End of variables declaration//GEN-END:variables
 }
