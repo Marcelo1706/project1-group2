@@ -6,7 +6,10 @@
 package org.kodigo.project1.group2.views;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -180,7 +183,7 @@ public class Mailing extends javax.swing.JFrame {
         sendMesasage(recevier, subject, body, attachment);
     }//GEN-LAST:event_Btn_SendActionPerformed
     
-    public void sendMesasage(String recevier, String subject, String body, String attachment){
+    public void sendMesasage(String recevier, String subject, String body, String attachment) {
        
        //Colocar remitente(direccion de correo) personal con su contraseña respectiva
        String sender = "";
@@ -196,24 +199,29 @@ public class Mailing extends javax.swing.JFrame {
        
        Session session = Session.getDefaultInstance(props);
        session.setDebug(true);
-       
-       MimeMessage message = new MimeMessage(session);
-       
+         
         try {
-            
-            BodyPart messageBodyPart = new MimeBodyPart();
-            
-            DataSource src = new FileDataSource(attachment);
-            messageBodyPart.setDataHandler(new DataHandler(src));
-            messageBodyPart.setFileName(attachment);
-            
-            MimeMultipart multiParte = new MimeMultipart();
-            multiParte.addBodyPart(messageBodyPart);
+            MimeMessage message = new MimeMessage(session);
             
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(recevier));
             message.setSubject(subject);
-            message.setText(body);
+            
+            // Texto mensaje
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(body);
+            
+            // Adjunto archivo
+            MimeBodyPart attachBodyPart = new MimeBodyPart();            
+            DataSource src = new FileDataSource(attachment);
+            attachBodyPart.setDataHandler(new DataHandler(src));
+            attachBodyPart.setFileName(attachment);
+            
+            MimeMultipart multiPart = new MimeMultipart();
+            multiPart.addBodyPart(attachBodyPart);
+            multiPart.addBodyPart(messageBodyPart);
+                    
+            message.setContent(multiPart);
             
             Transport transport = session.getTransport("smtp");
             transport.connect("smtp.gmail.com", sender, password);
