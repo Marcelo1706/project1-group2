@@ -22,7 +22,7 @@ public class FlightManagement extends javax.swing.JFrame {
     public FlightManagement() {
         initComponents();
         setLocationRelativeTo(null);
-        reloadTable();
+        reloadFlights();
     }
 
     /**
@@ -35,53 +35,53 @@ public class FlightManagement extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnNewFlight = new javax.swing.JButton();
+        btnUpdateFlight = new javax.swing.JButton();
+        btnWeatherReport = new javax.swing.JButton();
+        btnCancelFlight = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table_Flight = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnExcelManagement = new javax.swing.JButton();
+        btnMailing = new javax.swing.JButton();
         Cb_Select = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnAircraft = new javax.swing.JButton();
+        btnAirline = new javax.swing.JButton();
+        btnFlightStatus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Flight Management");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Flight Management");
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        jButton1.setText("New Flight");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnNewFlight.setText("New Flight");
+        btnNewFlight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnNewFlightActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Update Flight");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateFlight.setText("Update Flight");
+        btnUpdateFlight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnUpdateFlightActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Weather Report");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnWeatherReport.setText("Weather Report");
+        btnWeatherReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnWeatherReportActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Cancel Flight");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelFlight.setText("Cancel Flight");
+        btnCancelFlight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCancelFlightActionPerformed(evt);
             }
         });
 
@@ -96,11 +96,6 @@ public class FlightManagement extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        Table_Flight.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                Table_FlightMousePressed(evt);
-            }
-        });
         jScrollPane1.setViewportView(Table_Flight);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -119,18 +114,18 @@ public class FlightManagement extends javax.swing.JFrame {
                 .addGap(0, 36, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Excel Management");
-        jButton3.setActionCommand("excelManage");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnExcelManagement.setText("Excel Management");
+        btnExcelManagement.setActionCommand("excelManage");
+        btnExcelManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnExcelManagementActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Mailing");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnMailing.setText("Mailing");
+        btnMailing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnMailingActionPerformed(evt);
             }
         });
 
@@ -141,24 +136,24 @@ public class FlightManagement extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Aircraft");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnAircraft.setText("Aircraft");
+        btnAircraft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnAircraftActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Airline");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnAirline.setText("Airline");
+        btnAirline.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnAirlineActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Flight status");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnFlightStatus.setText("Flight status");
+        btnFlightStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnFlightStatusActionPerformed(evt);
             }
         });
 
@@ -172,20 +167,20 @@ public class FlightManagement extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnNewFlight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnWeatherReport, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                                .addComponent(btnUpdateFlight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMailing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Cb_Select, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnAircraft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAirline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnFlightStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(btnCancelFlight, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExcelManagement, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -202,23 +197,23 @@ public class FlightManagement extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNewFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdateFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnWeatherReport, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelFlight, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcelManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnFlightStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMailing, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAirline, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAircraft, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cb_Select, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -227,77 +222,45 @@ public class FlightManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       sendDataTable();      
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnUpdateFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateFlightActionPerformed
+       openUpdateFlight();      
+    }//GEN-LAST:event_btnUpdateFlightActionPerformed
 
-    public void sendDataTable(){
-        UpdateFlight updateflight = new UpdateFlight();
-        updateflight.setVisible(true);
-        updateflight.txtflightnumber.setText((String) Table_Flight.getModel().getValueAt(Table_Flight.getSelectedRow(), 0));
-        reloadTable();
-    }
-    
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NewFlight newFlight = new NewFlight(this, true);
-        newFlight.setVisible(true);
-        reloadTable();
+    private void btnNewFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewFlightActionPerformed
+        openNewFlight();
+    }//GEN-LAST:event_btnNewFlightActionPerformed
 
-        //NewFlight flight = new NewFlight();
-        //flight.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnCancelFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelFlightActionPerformed
+        openCancelFlight();
+    }//GEN-LAST:event_btnCancelFlightActionPerformed
+ 
+    private void btnWeatherReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWeatherReportActionPerformed
+        openWeatherReport();
+    }//GEN-LAST:event_btnWeatherReportActionPerformed
+ 
+    private void btnMailingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMailingActionPerformed
+       openMailing();
+    }//GEN-LAST:event_btnMailingActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CancelFlight cancel = new CancelFlight();
-        cancel.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        WeatherReport flight = new WeatherReport();
-        flight.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Mailing mail = new Mailing();
-        mail.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ExcelManagement excel = new ExcelManagement();
-        excel.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
+    private void btnExcelManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelManagementActionPerformed
+        openExcel();
+    }//GEN-LAST:event_btnExcelManagementActionPerformed
+  
     private void Cb_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cb_SelectActionPerformed
-        String select;
-        select =  Cb_Select.getSelectedItem().toString();
-        if(select == "Country"){
-            CountryManagement country = new CountryManagement();
-            country.setVisible(true);
-        }else if(select == "City"){
-            CityManagement city = new CityManagement();
-            city.setVisible(true);
-        }
+        openSelectCountryORCity();
     }//GEN-LAST:event_Cb_SelectActionPerformed
+  
+    private void btnAircraftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAircraftActionPerformed
+        openAircraft();
+    }//GEN-LAST:event_btnAircraftActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        AirCraftManagement airplane = new AirCraftManagement();
-        airplane.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        AirlineManagement airline = new AirlineManagement();
-        airline.setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        FlightStatus status = new FlightStatus();
-        status.setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void Table_FlightMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_FlightMousePressed
-        System.out.print((String) Table_Flight.getModel().getValueAt(Table_Flight.getSelectedRow(), 0));
-
-    }//GEN-LAST:event_Table_FlightMousePressed
+    private void btnAirlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAirlineActionPerformed
+        openAirline();
+    }//GEN-LAST:event_btnAirlineActionPerformed
+  
+    private void btnFlightStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlightStatusActionPerformed
+        openFlightStatus();
+    }//GEN-LAST:event_btnFlightStatusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,23 +299,81 @@ public class FlightManagement extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void reloadTable(){
+    //Reaload data.
+    private void reloadFlights(){
         Table_Flight.setModel(flightcontroller.getFlights());
     }
+    //Open diferents windows
+    public void openUpdateFlight(){
+        UpdateFlight updateflight = new UpdateFlight();
+        updateflight.setVisible(true);
+        updateflight.txtflightnumber.setText((String) Table_Flight.getModel().getValueAt(Table_Flight.getSelectedRow(), 0));
+        reloadFlights();
+    }
 
+    private void openNewFlight(){
+        NewFlight newFlight = new NewFlight(this, true);
+        newFlight.setVisible(true);
+        reloadFlights();
+    }
+     
+    private void openCancelFlight(){
+        CancelFlight cancelflight = new CancelFlight();
+        cancelflight.setVisible(true);
+    }
+   
+    private void openWeatherReport(){
+        WeatherReport weatherreport = new WeatherReport();
+        weatherreport.setVisible(true);
+    }
+   
+    private void openMailing(){
+        Mailing mailing = new Mailing();
+        mailing.setVisible(true);
+    }
+    
+    private void openExcel(){
+        ExcelManagement excel = new ExcelManagement();
+        excel.setVisible(true);
+    }
+    
+    private void openSelectCountryORCity(){
+        if(Cb_Select.getSelectedItem().toString() == "Country"){
+            CountryManagement country = new CountryManagement();
+            country.setVisible(true);
+        }
+        if(Cb_Select.getSelectedItem().toString() == "City"){
+            CityManagement city = new CityManagement();
+            city.setVisible(true);
+        }
+    }
+    
+     private void openAircraft(){
+        AirCraftManagement AirCraftManagement = new AirCraftManagement();
+        AirCraftManagement.setVisible(true);
+    }
+     
+     private void openAirline(){
+        AirlineManagement AirlineManagement = new AirlineManagement();
+        AirlineManagement.setVisible(true);
+    }
+     
+     private void openFlightStatus(){
+        FlightStatus FlightStatus = new FlightStatus();
+        FlightStatus.setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Cb_Select;
     private javax.swing.JTable Table_Flight;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton btnAircraft;
+    private javax.swing.JButton btnAirline;
+    private javax.swing.JButton btnCancelFlight;
+    private javax.swing.JButton btnExcelManagement;
+    private javax.swing.JButton btnFlightStatus;
+    private javax.swing.JButton btnMailing;
+    private javax.swing.JButton btnNewFlight;
+    private javax.swing.JButton btnUpdateFlight;
+    private javax.swing.JButton btnWeatherReport;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
