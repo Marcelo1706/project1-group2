@@ -12,6 +12,7 @@ import org.kodigo.project1.group2.controllers.FlightController;
 /**
  *
  * @author Danny
+ * @author Guillermo Minero
  */
 public class FlightManagement extends javax.swing.JFrame {
 
