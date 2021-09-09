@@ -25,6 +25,14 @@ import org.kodigo.project1.group2.models.ExcelData;
 public class ExcelController {
     private ArrayList<ExcelData> data = new ArrayList<>();
     
+    /**
+     * 
+     * @param file
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws InvalidFormatException 
+     */
     public ArrayList<ExcelData> retrieveDataFromFile(File file) throws FileNotFoundException, IOException, InvalidFormatException{
         FileInputStream excelFile = new FileInputStream(file);
         Workbook workbook = new XSSFWorkbook(file);
