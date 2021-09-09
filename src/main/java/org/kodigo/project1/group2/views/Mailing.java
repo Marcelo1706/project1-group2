@@ -26,6 +26,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.kodigo.project1.group2.controllers.MailController;
 
 /**
  *
@@ -38,6 +39,7 @@ public class Mailing extends javax.swing.JFrame {
      */
     
     private JFileChooser fileChooser = new JFileChooser();
+    private MailController mailController = new MailController();
     
     public Mailing() {
         initComponents();
@@ -55,46 +57,46 @@ public class Mailing extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        Txt_Mail = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_mailing = new javax.swing.JLabel();
+        txt_Mail = new javax.swing.JTextField();
+        lbl_email = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Txt_Message = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        Txt_Matter = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        Txt_Attachment = new javax.swing.JLabel();
-        Btn_Upload_files = new javax.swing.JButton();
-        Btn_Send = new javax.swing.JButton();
+        txt_Message = new javax.swing.JTextArea();
+        lbl_message = new javax.swing.JLabel();
+        txt_Matter = new javax.swing.JTextField();
+        lbl_matter = new javax.swing.JLabel();
+        txt_Attachment = new javax.swing.JLabel();
+        btn_Upload_files = new javax.swing.JButton();
+        btn_Send = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Mailing");
+        lbl_mailing.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_mailing.setText("Mailing");
 
-        jLabel2.setText("Email:");
+        lbl_email.setText("Email:");
 
-        Txt_Message.setColumns(20);
-        Txt_Message.setRows(5);
-        jScrollPane1.setViewportView(Txt_Message);
+        txt_Message.setColumns(20);
+        txt_Message.setRows(5);
+        jScrollPane1.setViewportView(txt_Message);
 
-        jLabel3.setText("Message:");
+        lbl_message.setText("Message:");
 
-        jLabel4.setText("Matter:");
+        lbl_matter.setText("Matter:");
 
-        Txt_Attachment.setText("Attach file:");
+        txt_Attachment.setText("Attach file:");
 
-        Btn_Upload_files.setText("Upload files");
-        Btn_Upload_files.addActionListener(new java.awt.event.ActionListener() {
+        btn_Upload_files.setText("Upload files");
+        btn_Upload_files.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Upload_filesActionPerformed(evt);
+                btn_Upload_filesActionPerformed(evt);
             }
         });
 
-        Btn_Send.setText("Send");
-        Btn_Send.addActionListener(new java.awt.event.ActionListener() {
+        btn_Send.setText("Send");
+        btn_Send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_SendActionPerformed(evt);
+                btn_SendActionPerformed(evt);
             }
         });
 
@@ -106,46 +108,46 @@ public class Mailing extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(170, 170, 170)
-                        .addComponent(jLabel1))
+                        .addComponent(lbl_mailing))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(Txt_Mail)
+                            .addComponent(lbl_matter)
+                            .addComponent(lbl_message)
+                            .addComponent(lbl_email)
+                            .addComponent(txt_Mail)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-                            .addComponent(Txt_Matter)
+                            .addComponent(txt_Matter)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Txt_Attachment)
+                                .addComponent(txt_Attachment)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Btn_Upload_files, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(Btn_Send, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(btn_Upload_files, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btn_Send, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lbl_mailing)
                 .addGap(7, 7, 7)
-                .addComponent(jLabel2)
+                .addComponent(lbl_email)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Txt_Mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_Mail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
-                .addComponent(jLabel4)
+                .addComponent(lbl_matter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Txt_Matter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_Matter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lbl_message)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Txt_Attachment)
-                    .addComponent(Btn_Upload_files))
+                    .addComponent(txt_Attachment)
+                    .addComponent(btn_Upload_files))
                 .addGap(18, 18, 18)
-                .addComponent(Btn_Send)
+                .addComponent(btn_Send)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -163,7 +165,7 @@ public class Mailing extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Btn_Upload_filesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Upload_filesActionPerformed
+    private void btn_Upload_filesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Upload_filesActionPerformed
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         FileFilter filter = new FileNameExtensionFilter("Excel file", "xlsx");
         fileChooser.setAcceptAllFileFilterUsed(false);
@@ -171,69 +173,18 @@ public class Mailing extends javax.swing.JFrame {
         int result = fileChooser.showOpenDialog(this);
         if(result == JFileChooser.APPROVE_OPTION){
             File selectedFile = fileChooser.getSelectedFile();
-            Txt_Attachment.setText(selectedFile.getAbsolutePath());
+            txt_Attachment.setText(selectedFile.getAbsolutePath());
         }
-    }//GEN-LAST:event_Btn_Upload_filesActionPerformed
+    }//GEN-LAST:event_btn_Upload_filesActionPerformed
 
-    private void Btn_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SendActionPerformed
-        String recevier = Txt_Mail.getText();
-        String subject = Txt_Matter.getText();
-        String body = Txt_Message.getText();
-        String attachment = Txt_Attachment.getText();
-        sendMesasage(recevier, subject, body, attachment);
-    }//GEN-LAST:event_Btn_SendActionPerformed
+    private void btn_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SendActionPerformed
+        String recevier = txt_Mail.getText();
+        String subject = txt_Matter.getText();
+        String body = txt_Message.getText();
+        String attachment = txt_Attachment.getText();
+        mailController.sendMesasage(recevier, subject, body, attachment);
+    }//GEN-LAST:event_btn_SendActionPerformed
     
-    public void sendMesasage(String recevier, String subject, String body, String attachment) {
-       
-       //Colocar remitente(direccion de correo) personal con su contraseña respectiva
-       String sender = "grupo.2.kodigo@gmail.com";
-       String password = "Grupo2_kodigo";
-       
-       
-       Properties props = System.getProperties();
-       props.put("mail.smtp.host", "smtp.gmail.com");  
-       props.put("mail.smtp.user", sender); 
-       props.put("mail.smtp.auth", "true");    
-       props.put("mail.smtp.starttls.enable", "true"); 
-       props.put("mail.smtp.port", "587"); 
-       
-       Session session = Session.getDefaultInstance(props);
-       session.setDebug(true);
-         
-        try {
-            MimeMessage message = new MimeMessage(session);
-            
-            message.setFrom(new InternetAddress(sender));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recevier));
-            message.setSubject(subject);
-            
-            // Texto mensaje
-            MimeBodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText(body);
-            
-            // Adjunto archivo
-            MimeBodyPart attachBodyPart = new MimeBodyPart();            
-            DataSource src = new FileDataSource(attachment);
-            attachBodyPart.setDataHandler(new DataHandler(src));
-            attachBodyPart.setFileName(attachment);
-            
-            MimeMultipart multiPart = new MimeMultipart();
-            multiPart.addBodyPart(attachBodyPart);
-            multiPart.addBodyPart(messageBodyPart);
-                    
-            message.setContent(multiPart);
-            
-            Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", sender, password);
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
-            
-            JOptionPane.showMessageDialog(null,"Mail has been sent","Success",JOptionPane.INFORMATION_MESSAGE);
-        } catch (MessagingException me) {
-            me.printStackTrace();
-            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
-        }
-    }
     /**
      * @param args the command line arguments
      */
@@ -270,17 +221,17 @@ public class Mailing extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Send;
-    private javax.swing.JButton Btn_Upload_files;
-    private javax.swing.JLabel Txt_Attachment;
-    private javax.swing.JTextField Txt_Mail;
-    private javax.swing.JTextField Txt_Matter;
-    private javax.swing.JTextArea Txt_Message;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btn_Send;
+    private javax.swing.JButton btn_Upload_files;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_email;
+    private javax.swing.JLabel lbl_mailing;
+    private javax.swing.JLabel lbl_matter;
+    private javax.swing.JLabel lbl_message;
+    private javax.swing.JLabel txt_Attachment;
+    private javax.swing.JTextField txt_Mail;
+    private javax.swing.JTextField txt_Matter;
+    private javax.swing.JTextArea txt_Message;
     // End of variables declaration//GEN-END:variables
 }

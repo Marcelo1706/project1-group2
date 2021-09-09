@@ -42,23 +42,23 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_mailing" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <Component id="Txt_Mail" max="32767" attributes="0"/>
+                              <Component id="lbl_matter" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_message" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_email" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_Mail" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" alignment="0" pref="349" max="32767" attributes="0"/>
-                              <Component id="Txt_Matter" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txt_Matter" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="Txt_Attachment" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_Attachment" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="Btn_Upload_files" max="32767" attributes="0"/>
+                                  <Component id="btn_Upload_files" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="Btn_Send" max="32767" attributes="0"/>
+                              <Component id="btn_Send" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -70,33 +70,33 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_mailing" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_email" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Txt_Mail" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_Mail" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_matter" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Txt_Matter" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_Matter" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbl_message" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="198" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Txt_Attachment" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Btn_Upload_files" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_Attachment" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_Upload_files" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="Btn_Send" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_Send" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lbl_mailing">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="1"/>
@@ -104,9 +104,9 @@
             <Property name="text" type="java.lang.String" value="Mailing"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Txt_Mail">
+        <Component class="javax.swing.JTextField" name="txt_Mail">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="lbl_email">
           <Properties>
             <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
@@ -118,7 +118,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="Txt_Message">
+            <Component class="javax.swing.JTextArea" name="txt_Message">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -126,37 +126,37 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="lbl_message">
           <Properties>
             <Property name="text" type="java.lang.String" value="Message:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="Txt_Matter">
+        <Component class="javax.swing.JTextField" name="txt_Matter">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lbl_matter">
           <Properties>
             <Property name="text" type="java.lang.String" value="Matter:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="Txt_Attachment">
+        <Component class="javax.swing.JLabel" name="txt_Attachment">
           <Properties>
             <Property name="text" type="java.lang.String" value="Attach file:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="Btn_Upload_files">
+        <Component class="javax.swing.JButton" name="btn_Upload_files">
           <Properties>
             <Property name="text" type="java.lang.String" value="Upload files"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_Upload_filesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Upload_filesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Btn_Send">
+        <Component class="javax.swing.JButton" name="btn_Send">
           <Properties>
             <Property name="text" type="java.lang.String" value="Send"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Btn_SendActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SendActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
