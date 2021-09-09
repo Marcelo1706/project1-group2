@@ -5,17 +5,26 @@
  */
 package org.kodigo.project1.group2.views;
 
+import javax.swing.JOptionPane;
+import org.kodigo.project1.group2.controllers.FlightController;
+
 /**
  *
  * @author Danny
  */
 public class CancelFlight extends javax.swing.JFrame {
+    private FlightController flightcontroller = new FlightController();
 
     /**
      * Creates new form CancelFlight
      */
     public CancelFlight() {
         initComponents();
+        reloadTable();
+    }
+    
+    private void reloadTable(){
+        jTable2.setModel(flightcontroller.getFlights2());
     }
 
     /**
@@ -37,7 +46,7 @@ public class CancelFlight extends javax.swing.JFrame {
         Txt_Number = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        Txt_Description = new javax.swing.JTextArea();
+        txtdescription = new javax.swing.JTextArea();
         Btn_cancel = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jEditorPane1);
@@ -59,6 +68,16 @@ public class CancelFlight extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable2MousePressed(evt);
+            }
+        });
+        jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable2KeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jLabel2.setText("N°:");
@@ -67,17 +86,22 @@ public class CancelFlight extends javax.swing.JFrame {
 
         jLabel3.setText("Description:");
 
-        Txt_Description.setColumns(20);
-        Txt_Description.setRows(5);
-        jScrollPane3.setViewportView(Txt_Description);
+        txtdescription.setColumns(20);
+        txtdescription.setRows(5);
+        jScrollPane3.setViewportView(txtdescription);
 
         Btn_cancel.setText("Cancel Flight");
+        Btn_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -88,13 +112,13 @@ public class CancelFlight extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                     .addComponent(Btn_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 386, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,8 +140,8 @@ public class CancelFlight extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -128,11 +152,38 @@ public class CancelFlight extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cancelActionPerformed
+        if(jTable2.getSelectedRowCount() > 0 ){
+            String description = txtdescription.getText();
+            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected Fligh", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                int flightId = Integer.parseInt((String) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 0));
+                if(flightcontroller.updateCancelFlight(flightId,description)){
+                    JOptionPane.showMessageDialog(null,"flight successfully cancel","Success",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+                }
+                System.out.print(flightId);
+                txtdescription.setText("");
+                reloadTable();
+            }
+        }else{
+         JOptionPane.showMessageDialog(null,"Please select a Flitgh to continue","Info",JOptionPane.INFORMATION_MESSAGE);
+        }    }//GEN-LAST:event_Btn_cancelActionPerformed
+
+    private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyPressed
+        
+    }//GEN-LAST:event_jTable2KeyPressed
+
+    private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
+        int flightId = Integer.parseInt((String) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 0));
+        Txt_Number.setText(Integer.toString(flightId));
+    }//GEN-LAST:event_jTable2MousePressed
 
     /**
      * @param args the command line arguments
@@ -171,7 +222,6 @@ public class CancelFlight extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_cancel;
-    private javax.swing.JTextArea Txt_Description;
     private javax.swing.JTextField Txt_Number;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
@@ -182,5 +232,6 @@ public class CancelFlight extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextArea txtdescription;
     // End of variables declaration//GEN-END:variables
 }

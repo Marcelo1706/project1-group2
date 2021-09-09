@@ -95,6 +95,11 @@ public class FlightManagement extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Table_Flight.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Table_FlightMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(Table_Flight);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -281,6 +286,11 @@ public class FlightManagement extends javax.swing.JFrame {
         FlightStatus status = new FlightStatus();
         status.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void Table_FlightMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_FlightMousePressed
+        String flightNumber = (String) Table_Flight.getModel().getValueAt(Table_Flight.getSelectedRow(), 0);  
+        System.out.print(flightNumber);
+    }//GEN-LAST:event_Table_FlightMousePressed
 
     /**
      * @param args the command line arguments
