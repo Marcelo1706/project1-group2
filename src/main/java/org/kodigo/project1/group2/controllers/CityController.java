@@ -23,6 +23,10 @@ public class CityController {
         this.databaseHandler = new Database();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public DefaultTableModel getCitiesTable(){
         DefaultTableModel model = new DefaultTableModel();        
         model.addColumn("ID");        
@@ -35,6 +39,10 @@ public class CityController {
         return model;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<City> getCitiesList(){
         ArrayList<City> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("city", "cityId,cityName", null);
@@ -43,7 +51,10 @@ public class CityController {
         }
         return list;
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<ComboItem> loadCitiesComboItem(){
         ArrayList<ComboItem> comboItems = new ArrayList<>();
         ArrayList<City> cityList = getCitiesList();
@@ -54,6 +65,11 @@ public class CityController {
         return comboItems;
     }
     
+    /**
+     * 
+     * @param country
+     * @return 
+     */
     public ArrayList<ComboItem> loadCitiesFromCertainCountry(String country){
         ArrayList<City> list = new ArrayList<>();
         ArrayList<ComboItem> comboItems = new ArrayList<>();
@@ -69,11 +85,21 @@ public class CityController {
         
         return comboItems;
     }
-    
+    /**
+     * 
+     * @param cityName
+     * @param countryId
+     * @return 
+     */
     public boolean newCity(String cityName, int countryId){
         return databaseHandler.insert("city", "cityName, countryId, latitude, longitude", "'"+cityName+"','"+countryId+"',0,0");
     }
     
+    /**
+     * 
+     * @param cityId
+     * @return 
+     */
     public boolean deleteCity(int cityId){
         return databaseHandler.delete("city", "cityId = "+cityId);
     }

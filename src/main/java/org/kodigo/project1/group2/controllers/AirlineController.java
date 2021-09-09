@@ -24,6 +24,10 @@ public class AirlineController {
         this.databaseHandler = new Database();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Airline> getAirlinesList(){
         ArrayList<Airline> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("airline", "airlineId,airlineName", null);
@@ -33,7 +37,10 @@ public class AirlineController {
         return list;
     }
 
-    
+    /**
+     * 
+     * @return 
+     */
     public DefaultTableModel getAirlinesTable(){
         DefaultTableModel model = new DefaultTableModel();        
         model.addColumn("ID");        
@@ -45,15 +52,30 @@ public class AirlineController {
         }
         return model;
     }
-    
+   /**
+    * 
+    * @param airlineName
+    * @return 
+    */ 
    public boolean newAirline(String airlineName){
        return databaseHandler.insert("airline", "airlineName", "'"+airlineName+"'");
    }
    
+   /**
+    * 
+    * @param id
+    * @param airlineName
+    * @return 
+    */
    public boolean updateAirline(int id, String airlineName){
        return databaseHandler.update("airline", "airlineName = '" +airlineName+"'", "airlineId = " + id);
    }
-           
+   
+   /**
+    * 
+    * @param id
+    * @return 
+    */
    public boolean deleteAirline(int id){
        return databaseHandler.delete("airline", "airlineId = " + id);
    }

@@ -23,6 +23,14 @@ public class WeatherController {
     private WeatherApi weatherApi = new WeatherApi();
     private JSONObject jsonObject;
     
+    /**
+     * 
+     * @param country
+     * @param city
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException 
+     */
     public String getWeatherConditions(String country, String city) throws MalformedURLException, IOException{
         
         String urlString = weatherApi.getAPI_URL()+"/data/2.5/weather?q="+city+","+country+"&APPID="+weatherApi.getAPI_KEY()+"&units=metric";

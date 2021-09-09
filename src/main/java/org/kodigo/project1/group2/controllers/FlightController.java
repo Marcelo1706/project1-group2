@@ -26,6 +26,10 @@ public class FlightController {
         this.databaseHandler = new Database();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public DefaultTableModel getFlights(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Flight Number");
@@ -42,6 +46,10 @@ public class FlightController {
         return model;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public DefaultTableModel getFlights2(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Number");
@@ -60,6 +68,10 @@ public class FlightController {
         return model;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Flight> getCountriesList(){
         ArrayList<Flight> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("flight", "flightId,flightNumber", null);
@@ -69,19 +81,46 @@ public class FlightController {
         return list;
     }
     
-    
+    /**
+     * 
+     * @param flightNumber
+     * @param originCityId
+     * @param destinationCityId
+     * @param departureTime
+     * @param arrivalTime
+     * @param aircraft
+     * @return 
+     */
     public boolean newFlight(String flightNumber, int originCityId, int destinationCityId, Date departureTime, Date arrivalTime, Aircraft aircraft){
         return databaseHandler.insert("flight", "flightNumber, originCityId, destinationCityId, departureTime, arrivalTime, aircraftId", "'"+flightNumber+"','"+originCityId+"','"+destinationCityId+"','"+departureTime+"','"+arrivalTime+"','"+aircraft.getAircraftId()+"'");
     }
-    
+    /**
+     * 
+     * @param flightNumber
+     * @param originCityId
+     * @param destinationCityId
+     * @param departureTime
+     * @param arrivalTime
+     * @param aircraft
+     * @return 
+     */
     public boolean updateFlight(String flightNumber, int originCityId, int destinationCityId, Date departureTime, Date arrivalTime, Aircraft aircraft){
         return databaseHandler.update("flight", "flightNumber = '"+flightNumber+"', originCityId = '"+originCityId+"', destinationCityId = '"+destinationCityId+"', departureTime = '"+departureTime+"', arrivalTime = '"+arrivalTime+"'", "flightNumber = " + flightNumber);
     }
-
+    /**
+     * 
+     * @param flightId
+     * @param description
+     * @return 
+     */
     public boolean updateCancelFlight(int flightId,String description){
         return databaseHandler.update("flight", "DESCRIPTION  = '"+description+"'"," flightId = "+flightId);
     }
-    
+    /**
+     * 
+     * @param flightId
+     * @return 
+     */
     public boolean deleteFlight(int flightId){
         return databaseHandler.delete("flight", "flightId = " + flightId);
     }

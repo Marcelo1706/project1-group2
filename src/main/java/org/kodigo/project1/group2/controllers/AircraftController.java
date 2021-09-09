@@ -24,7 +24,10 @@ public class AircraftController {
     public AircraftController(){
         this.databaseHandler = new Database();
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Aircraft> getAircraftList(){
         ArrayList<Aircraft> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("aircraft", "aircraftId, model", null);
@@ -34,6 +37,10 @@ public class AircraftController {
         return list;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public DefaultTableModel getAircraftTable(){
         DefaultTableModel model = new DefaultTableModel();        
         model.addColumn("ID");
@@ -48,15 +55,35 @@ public class AircraftController {
         }
         return model;
     }
-    
+    /**
+     * 
+     * @param model
+     * @param passengerCapacity
+     * @param fuelRange
+     * @param airline
+     * @return 
+     */
     public boolean newAircraft(String model, int passengerCapacity, double fuelRange, Airline airline){
         return databaseHandler.insert("aircraft", "model, passengerCapacity, fuelRange, airlineId", "'"+model+"','"+passengerCapacity+"','"+fuelRange+"','"+airline.getAirlineId()+"'");
     }
-    
+    /**
+     * 
+     * @param id
+     * @param model
+     * @param passengerCapacity
+     * @param fuelRange
+     * @param airline
+     * @return 
+     */
     public boolean updateAircraft(int id, String model, int passengerCapacity, double fuelRange, Airline airline){
         return databaseHandler.update("aircraft", "model = '"+model+"', passengerCapacity = '"+passengerCapacity+"', fuelRange = '"+fuelRange+"', airlineId = '"+airline.getAirlineId()+"'", "aircraftId = " + id);
     }
     
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public boolean deleteAircraft(int id){
         return databaseHandler.delete("aircraft", "aircraftId = " + id);
     }

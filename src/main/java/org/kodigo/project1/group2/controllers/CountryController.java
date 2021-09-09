@@ -25,6 +25,10 @@ public class CountryController {
         this.databaseHandler = new Database();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<Country> getCountriesList(){
         ArrayList<Country> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("country", "countryId,countryName", null);
@@ -33,6 +37,11 @@ public class CountryController {
         }
         return list;
     }
+    
+    /**
+     * 
+     * @return 
+     */
     public ArrayList<ComboItem> loadCountriesComboItem(){
         ArrayList<ComboItem> comboItems = new ArrayList<>();
         ArrayList<Country> countryList = getCountriesList();
@@ -43,6 +52,10 @@ public class CountryController {
         return comboItems;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public DefaultTableModel getCountriesTable(){
         DefaultTableModel model = new DefaultTableModel();        
         model.addColumn("ID");        
@@ -54,11 +67,19 @@ public class CountryController {
         }
         return model;
     }
-    
+    /**
+     * 
+     * @param countryName
+     * @return 
+     */
     public boolean newCountry(String countryName){
         return databaseHandler.insert("country", "countryName", "'"+countryName+"'");
     }
-    
+    /**
+     * 
+     * @param countryId
+     * @return 
+     */
     public boolean deleteCountry(int countryId){
         return databaseHandler.delete("country", "countryId = "+countryId);
     }

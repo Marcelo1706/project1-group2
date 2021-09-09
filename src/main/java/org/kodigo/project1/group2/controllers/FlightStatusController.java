@@ -23,7 +23,10 @@ public class FlightStatusController {
     public FlightStatusController(){
         this.databaseHandler = new Database();
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public DefaultTableModel getFlightStatusTable(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
@@ -38,15 +41,34 @@ public class FlightStatusController {
         return model;
     }
     
-    
+    /**
+     * 
+     * @param flightStatus
+     * @param flightLog
+     * @param flight
+     * @return 
+     */
     public boolean newFlightStatus(String flightStatus, String flightLog, Flight flight){
         return databaseHandler.insert("flightStatus", "flightStatus, flightLog, flight", "'"+flightStatus+"','"+flightLog+"','"+flight.getFlightId()+"'");
     }
     
+    /**
+     * 
+     * @param flightStatusId
+     * @param flightStatus
+     * @param flightLog
+     * @param flight
+     * @return 
+     */
     public boolean updateFlightStatus(int flightStatusId,String flightStatus, String flightLog, Flight flight){
         return databaseHandler.update("flightStatus", "flightStatus = '"+flightStatus+"', flightLog = '"+flightLog+"', flightLogId = '"+flight.getFlightId()+"'", "flightStatusId = " + flightStatusId);
     }
     
+    /**
+     * 
+     * @param flightStatusId
+     * @return 
+     */
     public boolean deleteStatus(int flightStatusId){
         return databaseHandler.delete("flightStatus", "flightStatusId = " + flightStatusId);
     }
