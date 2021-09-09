@@ -186,8 +186,8 @@ public class Mailing extends javax.swing.JFrame {
     public void sendMesasage(String recevier, String subject, String body, String attachment) {
        
        //Colocar remitente(direccion de correo) personal con su contraseña respectiva
-       String sender = "";
-       String password = "";
+       String sender = "grupo.2.kodigo@gmail.com";
+       String password = "Grupo2_kodigo";
        
        
        Properties props = System.getProperties();

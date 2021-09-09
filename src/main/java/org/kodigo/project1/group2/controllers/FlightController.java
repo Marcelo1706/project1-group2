@@ -51,7 +51,8 @@ public class FlightController {
         model.addColumn("Departure Time");
         model.addColumn("Arrival Time");
         model.addColumn("Aircraft");
-        Object[][] data = databaseHandler.select("flight", "flightId,flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraftId", null);
+        model.addColumn("Description");
+        Object[][] data = databaseHandler.select("flight", "flightId,flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraftId,description", null);
         
         for (Object[] dataRow : data) {
             model.addRow(dataRow);
@@ -75,6 +76,10 @@ public class FlightController {
     
     public boolean updateFlight(String flightNumber, int originCityId, int destinationCityId, Date departureTime, Date arrivalTime, Aircraft aircraft){
         return databaseHandler.update("flight", "flightNumber = '"+flightNumber+"', originCityId = '"+originCityId+"', destinationCityId = '"+destinationCityId+"', departureTime = '"+departureTime+"', arrivalTime = '"+arrivalTime+"'", "flightNumber = " + flightNumber);
+    }
+
+    public boolean updateCancelFlight(int flightId,String description){
+        return databaseHandler.update("flight", "DESCRIPTION  = '"+description+"'"," flightId = "+flightId);
     }
     
     public boolean deleteFlight(int flightId){

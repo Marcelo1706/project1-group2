@@ -40,11 +40,11 @@ public class AirlineManagement extends javax.swing.JFrame {
         txtCountry = new javax.swing.JTextField();
         AddCountryButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        countryTable = new javax.swing.JTable();
+        tbarilinemanagement = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         editCountryButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lbn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,7 +60,7 @@ public class AirlineManagement extends javax.swing.JFrame {
             }
         });
 
-        countryTable.setModel(new javax.swing.table.DefaultTableModel(
+        tbarilinemanagement.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -68,7 +68,12 @@ public class AirlineManagement extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(countryTable);
+        tbarilinemanagement.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbarilinemanagementMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbarilinemanagement);
 
         jLabel3.setText("Select an airline from the table to edit or delete.");
 
@@ -81,7 +86,7 @@ public class AirlineManagement extends javax.swing.JFrame {
 
         jLabel4.setText("N°:");
 
-        jLabel5.setText("N/A");
+        lbn.setText("N/A");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +109,7 @@ public class AirlineManagement extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)
+                                .addComponent(lbn)
                                 .addGap(21, 21, 21)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -127,7 +132,7 @@ public class AirlineManagement extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(lbn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -156,9 +161,9 @@ public class AirlineManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_AddCountryButtonActionPerformed
 
     private void editCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCountryButtonActionPerformed
-        if(countryTable.getSelectedRowCount() > 0 ){
+        if(tbarilinemanagement.getSelectedRowCount() > 0 ){
             if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected country?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                int airlineId = Integer.parseInt((String) countryTable.getModel().getValueAt(countryTable.getSelectedRow(), 0));
+                int airlineId = Integer.parseInt((String) tbarilinemanagement.getModel().getValueAt(tbarilinemanagement.getSelectedRow(), 0));
                 if(airlineController.deleteAirline(airlineId)){
                     JOptionPane.showMessageDialog(null,"Airline successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
                 }else{
@@ -171,6 +176,13 @@ public class AirlineManagement extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(null,"Please select an airline to continue","Info",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_editCountryButtonActionPerformed
+
+    private void tbarilinemanagementMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbarilinemanagementMousePressed
+        int flightId = Integer.parseInt((String) tbarilinemanagement.getModel().getValueAt(tbarilinemanagement.getSelectedRow(), 0));        
+
+        lbn.setText(Integer.toString(flightId));
+        txtCountry.setText(tbarilinemanagement.getValueAt(tbarilinemanagement.getSelectedRow(), 6).toString());
+    }//GEN-LAST:event_tbarilinemanagementMousePressed
 
     /**
      * @param args the command line arguments
@@ -207,19 +219,19 @@ public class AirlineManagement extends javax.swing.JFrame {
     }
     
     private void reloadTable(){
-        countryTable.setModel(airlineController.getAirlinesTable());
+        tbarilinemanagement.setModel(airlineController.getAirlinesTable());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCountryButton;
-    private javax.swing.JTable countryTable;
     private javax.swing.JButton editCountryButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbn;
+    private javax.swing.JTable tbarilinemanagement;
     private javax.swing.JTextField txtCountry;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,9 +5,9 @@
  */
 package org.kodigo.project1.group2.controllers;
 
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import org.kodigo.project1.group2.models.Country;
+import lombok.Getter;
+import lombok.Setter;
 import org.kodigo.project1.group2.models.Database;
 import org.kodigo.project1.group2.models.Flight;
 
@@ -18,7 +18,7 @@ import org.kodigo.project1.group2.models.Flight;
  */
 public class FlightStatusController {
     
-    private Database databaseHandler;
+     @Getter @Setter private Database databaseHandler;
     
     public FlightStatusController(){
         this.databaseHandler = new Database();
