@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.kodigo.project1.group2.models.WeatherApi;
 
 /**
@@ -19,8 +21,10 @@ import org.kodigo.project1.group2.models.WeatherApi;
  */
 public class WeatherController {
     private WeatherApi weatherApi = new WeatherApi();
+    private JSONObject jsonObject;
     
     public String getWeatherConditions(String country, String city) throws MalformedURLException, IOException{
+        
         String urlString = weatherApi.getAPI_URL()+"/data/2.5/weather?q="+city+","+country+"&APPID="+weatherApi.getAPI_KEY()+"&units=metric";
         URL url = new URL(urlString);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -28,6 +32,8 @@ public class WeatherController {
         con.setConnectTimeout(5000);
         con.setReadTimeout(5000);
         int status = con.getResponseCode();
+        
+        
         BufferedReader in = new BufferedReader(
         new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -38,7 +44,15 @@ public class WeatherController {
         in.close();
         con.disconnect();
         
-        return content.toString();
+        jsonObject = new JSONObject(content.toString());
+        Double temp = jsonObject.getJSONObject("main").getDouble("temp");
+        JSONArray arr = jsonObject.getJSONArray("weather");
+        String weather = arr.getJSONObject(0).getString("main");
+        Double windSpeed = jsonObject.getJSONObject("wind").getDouble("speed");
+        int windDirection = jsonObject.getJSONObject("wind").getInt("deg");
+        
+        
+        return temp+"°C, "+weather+", "+windSpeed+"m/s winds in "+windDirection+" degrees";
         
         
     }

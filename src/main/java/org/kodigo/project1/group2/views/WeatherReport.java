@@ -20,9 +20,9 @@ import org.kodigo.project1.group2.utils.ComboItem;
  */
 public class WeatherReport extends javax.swing.JFrame {
 
-    private CityController cityController = new CityController();
-    private CountryController countryController = new CountryController();
-    private WeatherController weatherController = new WeatherController();
+    private final CityController cityController = new CityController();
+    private final CountryController countryController = new CountryController();
+    private final WeatherController weatherController = new WeatherController();
 
     /**
      * Creates new form WeatherReport
@@ -144,7 +144,7 @@ public class WeatherReport extends javax.swing.JFrame {
         String city = ((ComboItem)cityItem).toString();
         
         try {
-            jLabel1.setText("Current Weather is: "+weatherController.getWeatherConditions(country, city));
+            jLabel1.setText("Current Weather in "+city+" is: "+weatherController.getWeatherConditions(country, city));
         } catch (IOException ex) {
             Logger.getLogger(WeatherReport.class.getName()).log(Level.SEVERE, null, ex);
         }

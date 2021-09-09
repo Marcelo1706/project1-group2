@@ -23,4 +23,18 @@ public class ExcelData {
     @Getter @Setter private String destinationCity;
     @Getter @Setter private Date departureTime;
     @Getter @Setter private Date arrivalTime;
+
+    public ExcelData(String flightNumber, String airline, String aircraft, String originCountry, String originCity, String destinationCountry, String destinationCity, Date departureTime, Date arrivalTime) {
+        this.flightNumber = flightNumber;
+        this.airline = airline;
+        this.aircraft = aircraft;
+        this.originCountry = originCountry;
+        this.originCity = originCity;
+        this.destinationCountry = destinationCountry;
+        this.destinationCity = destinationCity;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+    }
+    
+    
 }
