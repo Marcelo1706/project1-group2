@@ -5,6 +5,7 @@
  */
 package org.kodigo.project1.group2.views;
 
+import java.sql.Timestamp;
 import org.kodigo.project1.group2.controllers.FlightController;
 
 
@@ -227,10 +228,16 @@ public class FlightManagement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        UpdateFlight flight = new UpdateFlight();
-        flight.setVisible(true);
+       sendDataTable();      
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void sendDataTable(){
+        UpdateFlight updateflight = new UpdateFlight();
+        updateflight.setVisible(true);
+        updateflight.txtflightnumber.setText((String) Table_Flight.getModel().getValueAt(Table_Flight.getSelectedRow(), 0));
+        reloadTable();
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         NewFlight newFlight = new NewFlight(this, true);
         newFlight.setVisible(true);
@@ -288,8 +295,8 @@ public class FlightManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void Table_FlightMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_FlightMousePressed
-        String flightNumber = (String) Table_Flight.getModel().getValueAt(Table_Flight.getSelectedRow(), 0);  
-        System.out.print(flightNumber);
+        System.out.print((String) Table_Flight.getModel().getValueAt(Table_Flight.getSelectedRow(), 0));
+
     }//GEN-LAST:event_Table_FlightMousePressed
 
     /**
