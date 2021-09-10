@@ -5,11 +5,13 @@
  */
 package org.kodigo.project1.group2.controllers;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.kodigo.project1.group2.models.Database;
 import org.kodigo.project1.group2.models.Flight;
+import org.kodigo.project1.group2.models.FlightStatus;
 
 
 /**
@@ -49,7 +51,7 @@ public class FlightStatusController {
      * @return 
      */
     public boolean newFlightStatus(String flightStatus, String flightLog, Flight flight){
-        return databaseHandler.insert("flightStatus", "flightStatus, flightLog, flight", "'"+flightStatus+"','"+flightLog+"','"+flight.getFlightId()+"'");
+        return databaseHandler.insert("flightStatus", "flightStatus, flightLog,flightId", "'"+flightStatus+"','"+flightLog+"','"+flight.getFlightId()+"'");
     }
     
     /**

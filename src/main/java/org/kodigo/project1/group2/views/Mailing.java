@@ -181,7 +181,8 @@ public class Mailing extends javax.swing.JFrame {
         mailController.sendMesasage(txt_Mail.getText(),
             txt_Matter.getText(),
             txt_Message.getText(),
-            txt_Attachment.getText());
+            txt_Attachment.getText()
+        );
     }//GEN-LAST:event_btn_SendActionPerformed
 
     /**

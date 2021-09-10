@@ -72,7 +72,7 @@ public class FlightController {
      * 
      * @return 
      */
-    public ArrayList<Flight> getCountriesList(){
+    public ArrayList<Flight> getFlightsList(){
         ArrayList<Flight> list = new ArrayList<>();
         Object[][] data = databaseHandler.select("flight", "flightId,flightNumber", null);
         for (Object[] row : data) {

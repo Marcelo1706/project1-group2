@@ -26,6 +26,7 @@ public class FlightStatus extends javax.swing.JFrame {
     public FlightStatus() {
         initComponents();
         reloadTable();
+        loadComboBox();
     }
 
     /**
@@ -173,7 +174,8 @@ public class FlightStatus extends javax.swing.JFrame {
         
         
         if(flightstatus.newFlightStatus(flight_status, flight_log, new Flight(flight_value))){
-            JOptionPane.showMessageDialog(null,"City successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Status successfully changed","Success",JOptionPane.INFORMATION_MESSAGE);
+            reloadTable();
         }else{
             JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -219,7 +221,7 @@ public class FlightStatus extends javax.swing.JFrame {
     }
     
     public void loadComboBox(){
-        ArrayList<Flight> flights = flightController.getCountriesList();
+        ArrayList<Flight> flights = flightController.getFlightsList();
         flights.forEach((flight) ->{
             cb_flight.addItem(new ComboItem(flight.getFlightNumber(), String.valueOf(flight.getFlightId())));
         });
