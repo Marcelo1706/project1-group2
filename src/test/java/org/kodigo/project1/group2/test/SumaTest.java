@@ -1,7 +1,8 @@
 package org.kodigo.project1.group2.test;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Assert;
+import org.junit.Test;
+
 
 /**
  *
@@ -18,8 +19,10 @@ public class SumaTest {
     }
     
     @Test
-    public static void assertEquals(4,sumar(2,2)){
-        System.out.print(obj);
+    public void testSuma(){
+        int respuesta = 4;
+        
+        Assert.assertEquals("El resultado es 4", respuesta, sumar(2,2));
     }
-    
+ 
 }
