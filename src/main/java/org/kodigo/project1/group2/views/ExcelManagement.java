@@ -36,10 +36,7 @@ public class ExcelManagement extends javax.swing.JFrame {
     public ExcelManagement() {
         initComponents();
         setLocationRelativeTo(null);
-        dtpFlightDate.addDateTimeChangeListener((DateTimeChangeEvent event) -> {
-            flightDate = event.getNewDateTimeStrict();
-            System.out.println(flightDate);
-        });
+        TimeListener();
     }
 
     /** This method is called from within the constructor to
@@ -55,7 +52,7 @@ public class ExcelManagement extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnselectfile = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -91,10 +88,10 @@ public class ExcelManagement extends javax.swing.JFrame {
 
         jLabel3.setText("Import Flight Data from Excel file");
 
-        jButton3.setText("Select File");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnselectfile.setText("Select File");
+        btnselectfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnselectfileActionPerformed(evt);
             }
         });
 
@@ -129,7 +126,7 @@ public class ExcelManagement extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnselectfile, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5))
                             .addComponent(jLabel6))
@@ -150,7 +147,7 @@ public class ExcelManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton3)
+                    .addComponent(btnselectfile)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
@@ -279,22 +276,9 @@ public class ExcelManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        FileFilter filter = new FileNameExtensionFilter("Excel file", "xlsx");
-        fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.addChoosableFileFilter(filter);
-        int result = fileChooser.showOpenDialog(this);
-        if(result == JFileChooser.APPROVE_OPTION){
-            try {
-                File selectedFile = fileChooser.getSelectedFile();
-                jLabel5.setText("Selected File: "+selectedFile.getAbsolutePath());
-                importTable.setModel(excelController.getTableFromFile(selectedFile));
-            } catch (IOException | InvalidFormatException ex) {
-                Logger.getLogger(ExcelManagement.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnselectfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnselectfileActionPerformed
+        selectFile();
+    }//GEN-LAST:event_btnselectfileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,13 +316,37 @@ public class ExcelManagement extends javax.swing.JFrame {
         
         
     }
-
+    //Give date time.
+    private void TimeListener(){
+        dtpFlightDate.addDateTimeChangeListener((DateTimeChangeEvent event) -> {
+            flightDate = event.getNewDateTimeStrict();
+            System.out.println(flightDate);
+        });
+    }
+    //Open new windows and chose file on excel.
+    private void selectFile(){
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileFilter filter = new FileNameExtensionFilter("Excel file", "xlsx");
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showOpenDialog(this);
+        if(result == JFileChooser.APPROVE_OPTION){
+            try {
+                File selectedFile = fileChooser.getSelectedFile();
+                jLabel5.setText("Selected File: "+selectedFile.getAbsolutePath());
+                importTable.setModel(excelController.getTableFromFile(selectedFile));
+            } catch (IOException | InvalidFormatException ex) {
+                Logger.getLogger(ExcelManagement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnselectfile;
     private javax.swing.ButtonGroup buttonGroup1;
     private com.github.lgooddatepicker.components.DateTimePicker dtpFlightDate;
     private javax.swing.JTable exportTable;
     private javax.swing.JTable importTable;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
