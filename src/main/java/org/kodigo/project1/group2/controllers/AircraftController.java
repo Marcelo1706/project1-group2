@@ -48,7 +48,7 @@ public class AircraftController {
         model.addColumn("Passenger Capacity");
         model.addColumn("Fuel Range");
         model.addColumn("Airline");
-        Object[][] data = databaseHandler.select("aircraft", "aircraftId, model, passengerCapacity, fuelRange, airlineId", null);
+        Object[][] data = databaseHandler.select("aircraft ai inner join AIRLINE a on a.airlineId = ai.airlineId ", "aircraftId, model, passengerCapacity, fuelRange, AIRLINENAME  ", null);
                
         for (Object[] dataRow : data) {
             model.addRow(dataRow);
