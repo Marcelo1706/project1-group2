@@ -22,7 +22,7 @@ public class CountryManagement extends javax.swing.JFrame {
     public CountryManagement() {
         initComponents();
         setLocationRelativeTo(null);
-        reloadTable();
+        reloadDataCountry();
     }
 
     /**
@@ -37,11 +37,11 @@ public class CountryManagement extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCountry = new javax.swing.JTextField();
-        AddCountryButton = new javax.swing.JButton();
+        btnaddcountry = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        countryTable = new javax.swing.JTable();
+        tbcountry = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        editCountryButton = new javax.swing.JButton();
+        btndeletecountry = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -52,14 +52,14 @@ public class CountryManagement extends javax.swing.JFrame {
 
         jLabel2.setText("Country Name: ");
 
-        AddCountryButton.setText("Add Country");
-        AddCountryButton.addActionListener(new java.awt.event.ActionListener() {
+        btnaddcountry.setText("Add Country");
+        btnaddcountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddCountryButtonActionPerformed(evt);
+                btnaddcountryActionPerformed(evt);
             }
         });
 
-        countryTable.setModel(new javax.swing.table.DefaultTableModel(
+        tbcountry.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,14 +67,14 @@ public class CountryManagement extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(countryTable);
+        jScrollPane1.setViewportView(tbcountry);
 
         jLabel3.setText("Select a country from the table to edit or delete.");
 
-        editCountryButton.setText("Delete Selected Country");
-        editCountryButton.addActionListener(new java.awt.event.ActionListener() {
+        btndeletecountry.setText("Delete Selected Country");
+        btndeletecountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCountryButtonActionPerformed(evt);
+                btndeletecountryActionPerformed(evt);
             }
         });
 
@@ -90,7 +90,7 @@ public class CountryManagement extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel3)
                 .addGap(59, 59, 59)
-                .addComponent(editCountryButton)
+                .addComponent(btndeletecountry)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -109,7 +109,7 @@ public class CountryManagement extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtCountry)
                                 .addGap(18, 18, 18)
-                                .addComponent(AddCountryButton)
+                                .addComponent(btnaddcountry)
                                 .addGap(26, 26, 26))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(94, 94, 94)
@@ -131,46 +131,28 @@ public class CountryManagement extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddCountryButton))
+                    .addComponent(btnaddcountry))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(editCountryButton))
+                    .addComponent(btndeletecountry))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AddCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCountryButtonActionPerformed
-        if(countryController.newCountry(txtCountry.getText())){
-            JOptionPane.showMessageDialog(null,"Country successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        txtCountry.setText("");
-        reloadTable();
-    }//GEN-LAST:event_AddCountryButtonActionPerformed
+    private void btnaddcountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddcountryActionPerformed
+       addCountry();
+    }//GEN-LAST:event_btnaddcountryActionPerformed
 
-    private void editCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCountryButtonActionPerformed
-        if(countryTable.getSelectedRowCount() > 0 ){
-            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected country?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                int countryId = Integer.parseInt((String) countryTable.getModel().getValueAt(countryTable.getSelectedRow(), 0));
-                if(countryController.deleteCountry(countryId)){
-                    JOptionPane.showMessageDialog(null,"Country successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
-                }
-                txtCountry.setText("");
-                reloadTable();
-            }
-        }else{
-         JOptionPane.showMessageDialog(null,"Please select a country to continue","Info",JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_editCountryButtonActionPerformed
-
+    private void btndeletecountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeletecountryActionPerformed
+        deleteCountry();
+    }//GEN-LAST:event_btndeletecountryActionPerformed
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -203,21 +185,47 @@ public class CountryManagement extends javax.swing.JFrame {
             new CountryManagement().setVisible(true);
         });
     }
-    
-    private void reloadTable(){
-        countryTable.setModel(countryController.getCountriesTable());
+    //Reload country.
+    private void reloadDataCountry(){
+        tbcountry.setModel(countryController.getCountriesTable());
     }
-
+    //Create country.
+    private void addCountry(){
+         if(countryController.newCountry(txtCountry.getText())){
+            JOptionPane.showMessageDialog(null,"Country successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        txtCountry.setText("");
+        reloadDataCountry();
+    }
+    //Delete coutry.
+    private void deleteCountry(){
+        if(tbcountry.getSelectedRowCount() > 0 ){
+            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected country?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                int countryId = Integer.parseInt((String) tbcountry.getModel().getValueAt(tbcountry.getSelectedRow(), 0));
+                if(countryController.deleteCountry(countryId)){
+                    JOptionPane.showMessageDialog(null,"Country successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+                }
+                txtCountry.setText("");
+                reloadDataCountry();
+            }
+        }else{
+         JOptionPane.showMessageDialog(null,"Please select a country to continue","Info",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddCountryButton;
-    private javax.swing.JTable countryTable;
-    private javax.swing.JButton editCountryButton;
+    private javax.swing.JButton btnaddcountry;
+    private javax.swing.JButton btndeletecountry;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbcountry;
     private javax.swing.JTextField txtCountry;
     // End of variables declaration//GEN-END:variables
 }

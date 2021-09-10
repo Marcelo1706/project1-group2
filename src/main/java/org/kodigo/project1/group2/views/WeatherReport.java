@@ -30,7 +30,7 @@ public class WeatherReport extends javax.swing.JFrame {
     public WeatherReport() {
         initComponents();
         setLocationRelativeTo(null);
-        loadCountryComboBox();
+        loadCountry();
     }
 
     /**
@@ -137,25 +137,16 @@ public class WeatherReport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Object countryItem = comboCountry.getSelectedItem();
-        String country = ((ComboItem)countryItem).toString();
-        Object cityItem = ComboCity.getSelectedItem();
-        String city = ((ComboItem)cityItem).toString();
-        
-        try {
-            jLabel1.setText("Current Weather in "+city+" is: "+weatherController.getWeatherConditions(country, city));
-        } catch (IOException ex) {
-            Logger.getLogger(WeatherReport.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        searchWeather();    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void itemStateChangedHandler(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_itemStateChangedHandler
         // TODO add your handling code here:
-        String country = comboCountry.getSelectedItem().toString();
-        loadCityComboBox(country);        
+        loadItemsCountry(); 
     }//GEN-LAST:event_itemStateChangedHandler
 
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -190,15 +181,15 @@ public class WeatherReport extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void loadCountryComboBox(){
+    //Reload country.
+    private void loadCountry(){
         ArrayList<ComboItem> comboItems = countryController.loadCountriesComboItem();
         comboItems.forEach((item) -> {
             comboCountry.addItem(item);
         });
     }
-    
-    private void loadCityComboBox(String country){
+    //Reload city.
+    private void loadCity(String country){
         if(ComboCity.getItemCount() > 0){
             ComboCity.removeAllItems();
         }
@@ -207,7 +198,25 @@ public class WeatherReport extends javax.swing.JFrame {
             ComboCity.addItem(item);
         });
     }
-
+    //Search wearther of country.
+    private void searchWeather(){
+        Object countryItem = comboCountry.getSelectedItem();
+        String country = ((ComboItem)countryItem).toString();
+        Object cityItem = ComboCity.getSelectedItem();
+        String city = ((ComboItem)cityItem).toString();
+        
+        try {
+            jLabel1.setText("Current Weather in "+city+" is: "+weatherController.getWeatherConditions(country, city));
+        } catch (IOException ex) {
+            Logger.getLogger(WeatherReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //Reaload items to country.
+    private void loadItemsCountry(){
+        String country = comboCountry.getSelectedItem().toString();
+        loadCity(country);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<ComboItem> ComboCity;
     private javax.swing.JComboBox<ComboItem> comboCountry;
