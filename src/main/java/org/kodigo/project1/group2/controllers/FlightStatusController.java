@@ -32,10 +32,10 @@ public class FlightStatusController {
     public DefaultTableModel getFlightStatusTable(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
-        model.addColumn("Flight ID");
+        model.addColumn("Number Flight");
         model.addColumn("Flight Status");
         model.addColumn("Flight Log");
-        Object[][] data = databaseHandler.select("flightStatus", "flightStatusId, flightId, flightStatus, flightLog", null);
+        Object[][] data = databaseHandler.select("flightStatus fs inner join flight f on f.flightId  = fs.flightId", "flightStatusId, FLIGHTNUMBER, flightStatus, flightLog", null);
         
         for (Object[] dataRow : data) {
             model.addRow(dataRow);
