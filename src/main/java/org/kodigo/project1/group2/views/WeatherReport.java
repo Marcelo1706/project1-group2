@@ -141,7 +141,6 @@ public class WeatherReport extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void itemStateChangedHandler(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_itemStateChangedHandler
-        // TODO add your handling code here:
         loadItemsCountry(); 
     }//GEN-LAST:event_itemStateChangedHandler
 
@@ -213,8 +212,7 @@ public class WeatherReport extends javax.swing.JFrame {
     }
     //Reaload items to country.
     private void loadItemsCountry(){
-        String country = comboCountry.getSelectedItem().toString();
-        loadCity(country);
+        loadCity(comboCountry.getSelectedItem().toString());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

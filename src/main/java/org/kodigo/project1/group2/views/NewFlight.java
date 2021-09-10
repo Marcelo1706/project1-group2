@@ -38,12 +38,12 @@ public class NewFlight extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        jComboBox1.removeAllItems();
-        jComboBox2.removeAllItems();
-        jComboBox3.removeAllItems();
-        jComboBox4.removeAllItems();
-        loadCountryComboBox();
-        loadAircraftComboBox();
+        cbnorigincountry.removeAllItems();
+        cbnorigincity.removeAllItems();
+        cbndestinationcounty.removeAllItems();
+        cbndestinationcity.removeAllItems();
+        loadCountry();
+        loadAircraft();
     }
 
     /**
@@ -57,18 +57,18 @@ public class NewFlight extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        cbndestinationcounty = new javax.swing.JComboBox<>();
+        btbncancel = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbndestinationcity = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<ComboItem>();
+        cbnorigincountry = new javax.swing.JComboBox<ComboItem>();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbnorigincity = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnaddflight = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         DatePickerSettings dateSettings = new DatePickerSettings();
@@ -88,62 +88,62 @@ public class NewFlight extends javax.swing.JDialog {
         timeSettings2.setInitialTimeToNow();
         ArrivalTimePicker = new com.github.lgooddatepicker.components.DateTimePicker(dateSettings2,timeSettings2);
         jLabel10 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<ComboItem>();
+        cbnaircraft = new javax.swing.JComboBox<ComboItem>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Arrival Time");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        cbndestinationcounty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                cbndestinationcountyActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btbncancel.setText("Cancel");
+        btbncancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btbncancelActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Origin City");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Destination Country");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbnorigincountry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbnorigincountryActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Flight Number");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Destination City");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Departure Time");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Origin Country");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jButton1.setText("Add Flight");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnaddflight.setText("Add Flight");
+        btnaddflight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnaddflightActionPerformed(evt);
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Create Flight");
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Aircraft");
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,9 +162,9 @@ public class NewFlight extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel11))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btbncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnaddflight, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -175,16 +175,16 @@ public class NewFlight extends javax.swing.JDialog {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbnorigincity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbndestinationcity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbndestinationcounty, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(departureTimePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(ArrivalTimePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbnorigincountry, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextField2)
-                                    .addComponent(jComboBox5, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cbnaircraft, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(20, 20, 20))
         );
@@ -199,19 +199,19 @@ public class NewFlight extends javax.swing.JDialog {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbnorigincountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbnorigincity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbndestinationcounty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbndestinationcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -224,11 +224,11 @@ public class NewFlight extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbnaircraft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btbncancel)
+                    .addComponent(btnaddflight))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -246,49 +246,30 @@ public class NewFlight extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        if(jComboBox4.getItemCount() > 0){
-            jComboBox4.removeAllItems();
-        }
-        String country = jComboBox3.getSelectedItem().toString();
-        loadCityComboBox(country,jComboBox4);
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    private void cbndestinationcountyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbndestinationcountyActionPerformed
+        loadDestinationCountry();
+    }//GEN-LAST:event_cbndestinationcountyActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    
+    private void btbncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbncancelActionPerformed
+        exitWindows();
+    }//GEN-LAST:event_btbncancelActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    
+    
+    private void cbnorigincountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbnorigincountryActionPerformed
+        loadOriginCountry();      
+    }//GEN-LAST:event_cbnorigincountryActionPerformed
 
-        if(jComboBox2.getItemCount() > 0){
-            jComboBox2.removeAllItems();
-        }
-        String country = jComboBox1.getSelectedItem().toString();
-        loadCityComboBox(country,jComboBox2);
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    
+    
+    private void btnaddflightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddflightActionPerformed
+        insertFlight();
+    }//GEN-LAST:event_btnaddflightActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String flightNumber = jTextField2.getText();
-        Object originCity = jComboBox2.getSelectedItem();
-        int originCityId = Integer.parseInt(((ComboItem)originCity).getValue());
-        Object destinationCity = jComboBox4.getSelectedItem();
-        int destinationCityId = Integer.parseInt(((ComboItem)destinationCity).getValue());
-        Timestamp departureTime = Timestamp.valueOf(departureTimePicker.getDateTimeStrict());
-        Timestamp arrivalTime = Timestamp.valueOf(ArrivalTimePicker.getDateTimeStrict());
-        Object selectedAircraft = jComboBox5.getSelectedItem();
-        int aircraftId = Integer.parseInt(((ComboItem)selectedAircraft).getValue());
-        String model = ((ComboItem)selectedAircraft).toString();
-        Aircraft aircraft = new Aircraft(aircraftId,model);
-
-        if(flightController.newFlight(flightNumber, originCityId, destinationCityId, departureTime, arrivalTime, aircraft)){
-            JOptionPane.showMessageDialog(null,"Flight successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
-            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        }else{
-            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+   
+    
     /**
      * @param args the command line arguments
      */
@@ -332,16 +313,16 @@ public class NewFlight extends javax.swing.JDialog {
         });
     }
     
-    //ComboBox
-    private void loadCountryComboBox(){
+    //Reload country.
+    private void loadCountry(){
         ArrayList<ComboItem> comboItems = countryController.loadCountriesComboItem();
         comboItems.forEach((item) -> {
-            jComboBox1.addItem(item);
-            jComboBox3.addItem(item);
+            cbnorigincountry.addItem(item);
+            cbndestinationcounty.addItem(item);
         });
     }
-    
-    private void loadCityComboBox(String country, javax.swing.JComboBox<ComboItem> combobox){
+    //Reload city.
+    private void loadCity(String country, javax.swing.JComboBox<ComboItem> combobox){
         if(combobox.getItemCount() > 0){
             combobox.removeAllItems();
         }
@@ -350,24 +331,64 @@ public class NewFlight extends javax.swing.JDialog {
             combobox.addItem(item);
         });
     }
-    
-    public void loadAircraftComboBox(){
+    //Reload aircraft.
+    public void loadAircraft(){
         ArrayList<Aircraft> aircrafts = aircraftController.getAircraftList();
         aircrafts.forEach((aircraft) -> {
-            jComboBox5.addItem(new ComboItem(aircraft.getModel() , String.valueOf(aircraft.getAircraftId())));
+            cbnaircraft.addItem(new ComboItem(aircraft.getModel() , String.valueOf(aircraft.getAircraftId())));
         });
     }
+    //Reload destination country.
+    private void loadDestinationCountry(){
+        if(cbndestinationcity.getItemCount() > 0){
+            cbndestinationcity.removeAllItems();
+        }
+        String country = cbndestinationcounty.getSelectedItem().toString();
+        loadCity(country,cbndestinationcity);
+    }
+    //Exit the windows.
+    private void exitWindows(){
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }
+    //Reload origin city.
+    private void loadOriginCountry(){
+        if(cbnorigincity.getItemCount() > 0){
+            cbnorigincity.removeAllItems();
+        }
+        String country = cbnorigincountry.getSelectedItem().toString();
+        loadCity(country,cbnorigincity);
+    }
+    //Create flights.
+     public void insertFlight(){
+        String flightNumber = jTextField2.getText();
+        Object originCity = cbnorigincity.getSelectedItem();
+        int originCityId = Integer.parseInt(((ComboItem)originCity).getValue());
+        Object destinationCity = cbndestinationcity.getSelectedItem();
+        int destinationCityId = Integer.parseInt(((ComboItem)destinationCity).getValue());
+        Timestamp departureTime = Timestamp.valueOf(departureTimePicker.getDateTimeStrict());
+        Timestamp arrivalTime = Timestamp.valueOf(ArrivalTimePicker.getDateTimeStrict());
+        Object selectedAircraft = cbnaircraft.getSelectedItem();
+        int aircraftId = Integer.parseInt(((ComboItem)selectedAircraft).getValue());
+        String model = ((ComboItem)selectedAircraft).toString();
+        Aircraft aircraft = new Aircraft(aircraftId,model);
 
+        if(flightController.newFlight(flightNumber, originCityId, destinationCityId, departureTime, arrivalTime, aircraft)){
+            JOptionPane.showMessageDialog(null,"Flight successfully registered","Success",JOptionPane.INFORMATION_MESSAGE);
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        }else{
+            JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.github.lgooddatepicker.components.DateTimePicker ArrivalTimePicker;
+    private javax.swing.JButton btbncancel;
+    private javax.swing.JButton btnaddflight;
+    private javax.swing.JComboBox<ComboItem> cbnaircraft;
+    private javax.swing.JComboBox<ComboItem> cbndestinationcity;
+    private javax.swing.JComboBox<ComboItem> cbndestinationcounty;
+    private javax.swing.JComboBox<ComboItem> cbnorigincity;
+    private javax.swing.JComboBox<ComboItem> cbnorigincountry;
     private com.github.lgooddatepicker.components.DateTimePicker departureTimePicker;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<ComboItem> jComboBox1;
-    private javax.swing.JComboBox<ComboItem> jComboBox2;
-    private javax.swing.JComboBox<ComboItem> jComboBox3;
-    private javax.swing.JComboBox<ComboItem> jComboBox4;
-    private javax.swing.JComboBox<ComboItem> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
