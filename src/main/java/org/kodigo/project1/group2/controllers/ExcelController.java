@@ -38,14 +38,11 @@ public class ExcelController {
      * @throws InvalidFormatException 
      */
     public List<ExcelData> retrieveDataFromFile(File file) throws FileNotFoundException, IOException, InvalidFormatException{
-        FileInputStream excelFile = new FileInputStream(file);
         Workbook workbook = new XSSFWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);
                 
         for(Row row : sheet){
-            if(row.getRowNum() == 0){
-                continue;
-            }else{
+            if(row.getRowNum() != 0){
                 String flightNumber = "";
                 switch(row.getCell(0).getCellType().name()){
                     case "STRING" :   flightNumber = row.getCell(0).getStringCellValue(); break;
