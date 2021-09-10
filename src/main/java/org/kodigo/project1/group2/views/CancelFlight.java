@@ -11,6 +11,7 @@ import org.kodigo.project1.group2.controllers.FlightController;
 /**
  *
  * @author Danny
+ * @author Guillermo Minero
  */
 public class CancelFlight extends javax.swing.JFrame {
     private FlightController flightcontroller = new FlightController();
@@ -20,11 +21,7 @@ public class CancelFlight extends javax.swing.JFrame {
      */
     public CancelFlight() {
         initComponents();
-        reloadTable();
-    }
-    
-    private void reloadTable(){
-        jTable2.setModel(flightcontroller.getFlights2());
+        reloadDataFlightCancel();
     }
 
     /**
@@ -41,13 +38,13 @@ public class CancelFlight extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbcancelflight = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         Txt_Number = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtdescription = new javax.swing.JTextArea();
-        Btn_cancel = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -57,7 +54,7 @@ public class CancelFlight extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Cancel Flight");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbcancelflight.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -68,17 +65,12 @@ public class CancelFlight extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbcancelflight.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTable2MousePressed(evt);
+                tbcancelflightMousePressed(evt);
             }
         });
-        jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable2KeyPressed(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tbcancelflight);
 
         jLabel2.setText("N°:");
 
@@ -90,10 +82,10 @@ public class CancelFlight extends javax.swing.JFrame {
         txtdescription.setRows(5);
         jScrollPane3.setViewportView(txtdescription);
 
-        Btn_cancel.setText("Cancel Flight");
-        Btn_cancel.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Cancel Flight");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_cancelActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -111,7 +103,7 @@ public class CancelFlight extends javax.swing.JFrame {
                         .addComponent(Txt_Number, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                    .addComponent(Btn_cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -135,8 +127,8 @@ public class CancelFlight extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Btn_cancel)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnCancel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,32 +150,13 @@ public class CancelFlight extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_cancelActionPerformed
-        if(jTable2.getSelectedRowCount() > 0 ){
-            String description = txtdescription.getText();
-            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected Fligh", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-                int flightId = Integer.parseInt((String) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 0));
-                if(flightcontroller.updateCancelFlight(flightId,description)){
-                    JOptionPane.showMessageDialog(null,"flight successfully cancel","Success",JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
-                }
-                System.out.print(flightId);
-                txtdescription.setText("");
-                reloadTable();
-            }
-        }else{
-         JOptionPane.showMessageDialog(null,"Please select a Flitgh to continue","Info",JOptionPane.INFORMATION_MESSAGE);
-        }    }//GEN-LAST:event_Btn_cancelActionPerformed
-
-    private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyPressed
-        
-    }//GEN-LAST:event_jTable2KeyPressed
-
-    private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
-        int flightId = Integer.parseInt((String) jTable2.getModel().getValueAt(jTable2.getSelectedRow(), 0));
-        Txt_Number.setText(Integer.toString(flightId));
-    }//GEN-LAST:event_jTable2MousePressed
+    private void tbcancelflightMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbcancelflightMousePressed
+        chargeTableInText();
+    }//GEN-LAST:event_tbcancelflightMousePressed
+   
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        actionCancelFlight();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,9 +193,35 @@ public class CancelFlight extends javax.swing.JFrame {
         });
     }
 
+    //Reaload data.
+    private void reloadDataFlightCancel(){
+        tbcancelflight.setModel(flightcontroller.getFlights2());
+    }
+    //Give text to table
+    private void chargeTableInText(){
+        Txt_Number.setText((String) tbcancelflight.getModel().getValueAt(tbcancelflight.getSelectedRow(), 0));
+    }
+    //method to update diferents flights
+    private void actionCancelFlight(){
+        if(tbcancelflight.getSelectedRowCount() > 0 ){
+            String description = txtdescription.getText();
+            if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected Fligh", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                int flightId = Integer.parseInt((String) tbcancelflight.getModel().getValueAt(tbcancelflight.getSelectedRow(), 0));
+                if(flightcontroller.updateCancelFlight(flightId,description)){
+                    JOptionPane.showMessageDialog(null,"flight successfully cancel","Success",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+                }
+                txtdescription.setText("");
+                reloadDataFlightCancel();
+            }
+        }else{
+         JOptionPane.showMessageDialog(null,"Please select a Flitgh to continue","Info",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_cancel;
     private javax.swing.JTextField Txt_Number;
+    private javax.swing.JButton btnCancel;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -231,7 +230,7 @@ public class CancelFlight extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tbcancelflight;
     private javax.swing.JTextArea txtdescription;
     // End of variables declaration//GEN-END:variables
 }
