@@ -223,31 +223,52 @@ public class FlightManagement extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * This method calls to the openUpdateFlight method
+     * @param evt 
+     */
     private void btnUpdateFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateFlightActionPerformed
        openUpdateFlight();      
     }//GEN-LAST:event_btnUpdateFlightActionPerformed
-
+    /**
+     * This method calls to the openNewFlight method
+     * @param evt 
+     */
     private void btnNewFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewFlightActionPerformed
         openNewFlight();
     }//GEN-LAST:event_btnNewFlightActionPerformed
-
+    /**
+     * This method calls to the openCancelFlight method
+     * @param evt 
+     */
     private void btnCancelFlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelFlightActionPerformed
         openCancelFlight();
     }//GEN-LAST:event_btnCancelFlightActionPerformed
- 
+    /**
+     * This method calls to the openWeatherReport method
+     * @param evt 
+     */
     private void btnWeatherReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWeatherReportActionPerformed
         openWeatherReport();
     }//GEN-LAST:event_btnWeatherReportActionPerformed
- 
+    /**
+     * This method calls to the openMailing method
+     * @param evt 
+     */
     private void btnMailingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMailingActionPerformed
        openMailing();
     }//GEN-LAST:event_btnMailingActionPerformed
-
+    /**
+     * This method calls to the openExcel method
+     * @param evt 
+     */
     private void btnExcelManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelManagementActionPerformed
         openExcel();
     }//GEN-LAST:event_btnExcelManagementActionPerformed
-  
+    /**
+     * This method calls to the openSelectCountryORCity method
+     * @param evt 
+     */
     private void Cb_SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cb_SelectActionPerformed
         openSelectCountryORCity();
     }//GEN-LAST:event_Cb_SelectActionPerformed
@@ -255,11 +276,17 @@ public class FlightManagement extends javax.swing.JFrame {
     private void btnAircraftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAircraftActionPerformed
         openAircraft();
     }//GEN-LAST:event_btnAircraftActionPerformed
-
+    /**
+     * This method calls to the openAirline method
+     * @param evt 
+     */
     private void btnAirlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAirlineActionPerformed
         openAirline();
     }//GEN-LAST:event_btnAirlineActionPerformed
-  
+    /**
+     * This method calls to the openFlightStatus method
+     * @param evt 
+     */
     private void btnFlightStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFlightStatusActionPerformed
         openFlightStatus();
     }//GEN-LAST:event_btnFlightStatusActionPerformed
@@ -315,7 +342,7 @@ public class FlightManagement extends javax.swing.JFrame {
         reloadFlights();
     }
     /**
-     * This methow allows to open the form for create e new flight
+     * This methow allows to open the form for creating e new flight
      */
     private void openNewFlight(){
         NewFlight newFlight = new NewFlight(this, true);
@@ -323,7 +350,7 @@ public class FlightManagement extends javax.swing.JFrame {
         reloadFlights();
     }
      /**
-      * This method allows to open the form for cancel a flight
+      * This method allows to open the form for cancelling a flight
       */
     private void openCancelFlight(){
         CancelFlight cancelflight = new CancelFlight();
@@ -364,18 +391,22 @@ public class FlightManagement extends javax.swing.JFrame {
         }
     }
     /**
-     * This method allows to open the form for Aircraft
+     * This method allows to open the Aircraft form and its functionalities
      */
      private void openAircraft(){
         AirCraftManagement AirCraftManagement = new AirCraftManagement();
         AirCraftManagement.setVisible(true);
     }
-     
+    /**
+     * This method allows to open the Airline form and its functionalities
+     */
      private void openAirline(){
         AirlineManagement AirlineManagement = new AirlineManagement();
         AirlineManagement.setVisible(true);
     }
-     
+    /**
+     * This method allows to open the FlightStatus form and its functionalities
+     */
      private void openFlightStatus(){
         FlightStatus FlightStatus = new FlightStatus();
         FlightStatus.setVisible(true);

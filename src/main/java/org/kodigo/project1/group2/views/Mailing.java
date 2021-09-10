@@ -178,13 +178,12 @@ public class Mailing extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Upload_filesActionPerformed
 
     private void btn_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SendActionPerformed
-        String recevier = txt_Mail.getText();
-        String subject = txt_Matter.getText();
-        String body = txt_Message.getText();
-        String attachment = txt_Attachment.getText();
-        mailController.sendMesasage(recevier, subject, body, attachment);
+        mailController.sendMesasage(txt_Mail.getText(),
+            txt_Matter.getText(),
+            txt_Message.getText(),
+            txt_Attachment.getText());
     }//GEN-LAST:event_btn_SendActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
@@ -219,7 +218,8 @@ public class Mailing extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Send;
     private javax.swing.JButton btn_Upload_files;
