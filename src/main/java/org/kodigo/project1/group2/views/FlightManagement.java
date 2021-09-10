@@ -13,6 +13,7 @@ import org.kodigo.project1.group2.controllers.FlightController;
  *
  * @author Danny
  * @author Guillermo Minero
+ * @author Néstor Recinos
  */
 public class FlightManagement extends javax.swing.JFrame {
 
@@ -304,40 +305,54 @@ public class FlightManagement extends javax.swing.JFrame {
     private void reloadFlights(){
         Table_Flight.setModel(flightcontroller.getFlights());
     }
-    //Open diferents windows
+    /**
+     * This method allows to open the form for update a flight
+     */
     public void openUpdateFlight(){
         UpdateFlight updateflight = new UpdateFlight();
         updateflight.setVisible(true);
         updateflight.txtflightnumber.setText((String) Table_Flight.getModel().getValueAt(Table_Flight.getSelectedRow(), 0));
         reloadFlights();
     }
-
+    /**
+     * This methow allows to open the form for create e new flight
+     */
     private void openNewFlight(){
         NewFlight newFlight = new NewFlight(this, true);
         newFlight.setVisible(true);
         reloadFlights();
     }
-     
+     /**
+      * This method allows to open the form for cancel a flight
+      */
     private void openCancelFlight(){
         CancelFlight cancelflight = new CancelFlight();
         cancelflight.setVisible(true);
     }
-   
+    /**
+     * This method allows to open the form for showing the weather report
+     */
     private void openWeatherReport(){
         WeatherReport weatherreport = new WeatherReport();
         weatherreport.setVisible(true);
     }
-   
+    /**
+     * This method allows to open the form for sending a mail
+     */
     private void openMailing(){
         Mailing mailing = new Mailing();
         mailing.setVisible(true);
     }
-    
+    /**
+     * This method allows to open the form for opening an Excel file
+     */
     private void openExcel(){
         ExcelManagement excel = new ExcelManagement();
         excel.setVisible(true);
     }
-    
+    /**
+     * This method allows to o open the form for Countries or Cities
+     */
     private void openSelectCountryORCity(){
         if(Cb_Select.getSelectedItem().toString() == "Country"){
             CountryManagement country = new CountryManagement();
@@ -348,7 +363,9 @@ public class FlightManagement extends javax.swing.JFrame {
             city.setVisible(true);
         }
     }
-    
+    /**
+     * This method allows to open the form for Aircraft
+     */
      private void openAircraft(){
         AirCraftManagement AirCraftManagement = new AirCraftManagement();
         AirCraftManagement.setVisible(true);

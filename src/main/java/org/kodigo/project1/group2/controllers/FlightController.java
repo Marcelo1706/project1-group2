@@ -28,7 +28,7 @@ public class FlightController {
     
     /**
      * 
-     * @return 
+     * @return the model of the Flight controller 
      */
     public DefaultTableModel getFlights(){
         DefaultTableModel model = new DefaultTableModel();
