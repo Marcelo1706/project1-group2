@@ -49,7 +49,7 @@ public class FlightStatus extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        statusTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -71,8 +71,13 @@ public class FlightStatus extends javax.swing.JFrame {
         });
 
         jButton2.setText("Delete Status Flight");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        statusTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -83,7 +88,7 @@ public class FlightStatus extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(statusTable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,6 +186,18 @@ public class FlightStatus extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int id = Integer.parseInt((String) statusTable.getModel().getValueAt(statusTable.getSelectedRow(), 0));
+        if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected status?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            if(flightstatus.deleteStatus(id)){
+                JOptionPane.showMessageDialog(null,"Status successfully deleted","Success",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            reloadTable();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,7 +234,7 @@ public class FlightStatus extends javax.swing.JFrame {
     }
     
     public void reloadTable(){
-        jTable1.setModel(flightstatus.getFlightStatusTable());
+        statusTable.setModel(flightstatus.getFlightStatusTable());
     }
     
     public void loadComboBox(){
@@ -237,7 +254,7 @@ public class FlightStatus extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable statusTable;
     private javax.swing.JTextField txt_flight_log;
     private javax.swing.JTextField txt_flight_status;
     // End of variables declaration//GEN-END:variables
