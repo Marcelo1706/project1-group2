@@ -381,11 +381,11 @@ public class FlightManagement extends javax.swing.JFrame {
      * This method allows to o open the form for Countries or Cities
      */
     private void openSelectCountryORCity(){
-        if(Cb_Select.getSelectedItem().toString() == "Country"){
+        if("Country".equals(Cb_Select.getSelectedItem().toString())){
             CountryManagement country = new CountryManagement();
             country.setVisible(true);
         }
-        if(Cb_Select.getSelectedItem().toString() == "City"){
+        if("City".equals(Cb_Select.getSelectedItem().toString())){
             CityManagement city = new CityManagement();
             city.setVisible(true);
         }

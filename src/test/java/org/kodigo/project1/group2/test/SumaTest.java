@@ -18,9 +18,8 @@ public class SumaTest {
     }
     
     @Test
-    public static void sumaTest(){
-        int ans = 4;
-        assertEquals(ans, sumar(2,2));
+    public static void assertEquals(4,sumar(2,2)){
+        System.out.print(obj);
     }
     
 }

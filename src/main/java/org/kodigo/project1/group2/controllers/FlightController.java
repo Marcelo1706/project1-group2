@@ -38,7 +38,7 @@ public class FlightController {
         model.addColumn("Departure Time");
         model.addColumn("Arrival Time");
         model.addColumn("Aircraft");
-        Object[][] data = databaseHandler.select("flight", "flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraftId", null);
+        Object[][] data = databaseHandler.select("flight f inner join CITY c on c.CITYID = f.ORIGINCITYID inner join AIRCRAFT a on a.AIRCRAFTID = f.AIRCRAFTID ", "FLIGHTNUMBER,CITYNAME,CITYNAME,DEPARTURETIME,ARRIVALTIME,MODEL", null);
         
         for (Object[] dataRow : data) {
             model.addRow(dataRow);
@@ -60,7 +60,7 @@ public class FlightController {
         model.addColumn("Arrival Time");
         model.addColumn("Aircraft");
         model.addColumn("Description");
-        Object[][] data = databaseHandler.select("flight", "flightId,flightNumber,originCityId,destinationCityId,departureTime,arrivalTime,aircraftId,description", null);
+        Object[][] data = databaseHandler.select("flight f inner join CITY c on c.CITYID = f.ORIGINCITYID inner join AIRCRAFT a on a.AIRCRAFTID = f.AIRCRAFTID;", "flightId,FLIGHTNUMBER,CITYNAME,CITYNAME,DEPARTURETIME,ARRIVALTIME,MODEL,DESCRIPTION", null);
         
         for (Object[] dataRow : data) {
             model.addRow(dataRow);
