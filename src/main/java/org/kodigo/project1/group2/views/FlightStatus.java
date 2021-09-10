@@ -170,22 +170,24 @@ public class FlightStatus extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String flight_status = txt_flight_status.getText();
-        String flight_log = txt_flight_status.getText();
-        
         Object flight_search = cb_flight.getSelectedItem();
         int flight_value = Integer.parseInt(((ComboItem)flight_search).getValue());
         
-        
-        if(flightstatus.newFlightStatus(flight_status, flight_log, new Flight(flight_value))){
+        /**
+         * If a new Status is created using the values of txt_flight_status and txt_flight_log,
+         * a success message is shown to the user
+         */
+        if(flightstatus.newFlightStatus(txt_flight_status.getText(), txt_flight_log.getText(), new Flight(flight_value))){
             JOptionPane.showMessageDialog(null,"Status successfully changed","Success",JOptionPane.INFORMATION_MESSAGE);
             reloadTable();
         }else{
             JOptionPane.showMessageDialog(null,"An error ocurred","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    /**
+     * It's asked to the user if he wants to delete the status, and if the answer is yes,
+     * the status is deleted.
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int id = Integer.parseInt((String) statusTable.getModel().getValueAt(statusTable.getSelectedRow(), 0));
         if(JOptionPane.showConfirmDialog(null, "Do you really want to delete the selected status?", "Confirm Deletion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
